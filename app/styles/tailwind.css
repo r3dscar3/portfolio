@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html, body {
+        @apply h-full w-full min-h-full min-w-full font-rustica;
+    }
+
+    body {
+        @apply text-sky-950;
+    }
+}
