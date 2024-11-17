@@ -93,9 +93,9 @@ export default function App() {
       <motion.main
         className="relative z-10 flex h-full min-h-full w-full flex-grow flex-col"
         key={location.pathname}
-        initial={{ y: "-10%", opacity: 0 }}
-        animate={{ y: "0", opacity: 1 }}
-        exit={{ y: "-10%", opacity: 0 }}
+        initial={{  opacity: 0, scale: 0 }}
+        animate={{  opacity: 1, scale: 1 }}
+        exit={{  opacity: 0, scale: 0 }}
       >
         {outlet}
       </motion.main>

@@ -59,7 +59,7 @@ export default function Navigation({width}: {width: number}) {
           className="h-full flex flex-col fixed lg:relative inset-0 w-full bg-sky-600 z-20 p-4 lg:p-0"
         >
           <XMarkIcon onClick={() => setShowMenu(false)} className="absolute right-3 w-8 h-8 text-sky-950 lg:hidden"/>
-          <div className="flex flex-col pt-6 lg:pt-12 text-sky-200 group flex-grow justify-start space-x-0">
+          <div className="flex flex-col pt-6 lg:pt-12 text-sky-200 group justify-start space-x-0">
             {routes.map((route: any, idx: Number) => {
               if (idx !== 0) {
                 const { slug, emoji, name } = route;
