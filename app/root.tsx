@@ -72,7 +72,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className="w-full min-h-[calc(100dvh-78px)] lg:h-full bg-gray-100">
+          <div className="w-full min-h-[calc(100dvh-78px)] lg:h-dvh lg:min-h-dvh bg-gray-100">
             {children}
           </div>
         </div>
