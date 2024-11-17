@@ -33,6 +33,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <link rel="icon" href="data:image/x-icon;base64,AA" />
         <link rel="stylesheet" href="https://use.typekit.net/wtd2mht.css" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest"></link>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
@@ -54,7 +72,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className="w-full min-h-[calc(100vh-78px)] lg:h-full bg-gray-100">{children}</div>
+          <div className="w-full min-h-[calc(100vh-78px)] lg:h-full bg-gray-100">
+            {children}
+          </div>
         </div>
 
         <ScrollRestoration />
