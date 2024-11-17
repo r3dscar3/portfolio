@@ -4,10 +4,30 @@
 
 @layer base {
     html, body {
-        @apply h-full w-full min-h-full min-w-full font-rustica;
+        @apply h-full w-full min-h-full min-w-full font-rustica text-body;
     }
 
     body {
+        @apply text-gray-600;
+    }
+
+    h1, h2, h3, h4 {
         @apply text-sky-950;
+    }
+
+    h1 {
+        @apply text-title1 font-black;
+    }
+
+    h2 {
+        @apply text-title2 font-black;
+    }
+
+    h3 {
+        @apply text-title3 font-bold;
+    }
+
+    h4 {
+        @apply text-title4 font-semibold;
     }
 }
