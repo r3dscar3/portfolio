@@ -58,9 +58,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <div
           ref={wrapperRef}
-          className="flex flex-col lg:flex-row w-full h-full"
+          className="flex flex-col lg:flex-row w-full h-dvh"
         >
-          <div className="relative flex lg:flex-col lg:min-w-[200px] lg:max-w-[200px] lg:h-full bg-sky-600 border-b-8 lg:border-r-8 lg:border-b-0 border-sky-950 text-white p-4 z-20">
+          <div className="relative flex lg:flex-col lg:min-w-[200px] lg:max-w-[200px] lg:h-dvh bg-sky-600 border-b-8 lg:border-r-8 lg:border-b-0 border-sky-950 text-white p-4 z-20">
             <div className="z-10 max-w-[8px] w-2 h-3 bg-gradient-to-r from-sky-600 to-gray-100 from-50% to-50% absolute bottom-[-11px] right-[3px] rotate-90 lg:rotate-0 lg:top-0 lg:right-[-8px] overflow-hidden ">
               <div className="absolute w-4 h-4 rotate-45 bg-sky-950 left-[-5px] bottom-[-12px]" />
             </div>
@@ -72,7 +72,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className="w-full min-h-[calc(100vh-78px)] lg:h-full bg-gray-100">
+          <div className="w-full min-h-[calc(100dvh-78px)] lg:h-full bg-gray-100">
             {children}
           </div>
         </div>
