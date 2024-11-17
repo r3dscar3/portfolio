@@ -7,7 +7,7 @@ import Card from "~/components/Card";
 export default function Home() {
   return (
     <div className="space-y-3 p-4 relative flex h-full flex-col overflow-y-auto">
-      <h1>
+      <h1 className="text-[69px]/[74px]">
         Hello!
         <br /> I'm Nolan.
       </h1>

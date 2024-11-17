@@ -44,7 +44,7 @@ export default function Skills() {
 
   return (
     <PageWrapper heading="Skills" emoji="👍">
-      <div className="space-y-6">
+      <div className="space-y-10">
         <p className="px-2">
           As a Staff Engineer, my role is about more than just writing great
           code—it's about driving impact at scale through technical leadership,
@@ -61,7 +61,7 @@ export default function Skills() {
 
         
 
-        <div className="grid lg:grid-cols-2 gap-6 pb-6 px-2">
+        <div className="grid lg:grid-cols-2 gap-6 pb-6 p-2">
         <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md">
             <h2 className="mb-4">Tech Skills</h2>
             <ul className="list-disc pl-6 space-y-2">
