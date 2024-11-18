@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Bars3Icon } from "@heroicons/react/16/solid";
 import { NavLink, useNavigate } from "@remix-run/react";
 
-import GitHub from "../../icons/GitHub";
-import Glasses from "../../icons/Glasses";
-import CodePen from "../../icons/CodePen";
-import LinkedIn from "../../icons/LinkedIn";
+import GitHub from "../icons/GitHub";
+import Glasses from "../icons/Glasses";
+import CodePen from "../icons/CodePen";
+import LinkedIn from "../icons/LinkedIn";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const routes: any = [
@@ -33,7 +33,7 @@ const routes: any = [
   },
 ];
 
-export default function Navigation({width}: {width: number}) {
+export default function Navigation({ width }: { width: number }) {
   const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -58,29 +58,38 @@ export default function Navigation({width}: {width: number}) {
           animate={{ opacity: 1, scale: 1 }}
           className="h-full flex flex-col fixed lg:relative inset-0 w-full z-20 p-4 lg:p-0"
         >
-          <XMarkIcon onClick={() => setShowMenu(false)} className="absolute right-3 w-8 h-8 text-sky-950 lg:hidden"/>
-          <div className="flex flex-col pt-6 lg:pt-12 text-sky-200 group justify-start space-x-0">
+          <XMarkIcon
+            onClick={() => setShowMenu(false)}
+            className="absolute right-3 w-8 h-8 text-sky-950 lg:hidden"
+          />
+          <div className="flex flex-col pt-6 lg:pt-12 text-sky-200 group justify-start space-x-0 w-full">
             {routes.map((route: any, idx: Number) => {
               if (idx !== 0) {
                 const { slug, emoji, name } = route;
 
                 return (
-                  <NavLink prefetch="intent" to={slug} key={`${idx}`} onClick={() => setShowMenu(false)}>
+                  <NavLink
+                    prefetch="intent"
+                    to={slug}
+                    key={`${idx}`}
+                    onClick={() => setShowMenu(false)}
+                    className={({ isActive }) =>
+                      `w-full text-white transition-colors ${
+                        isActive
+                          ? "hover:!opacity-100 group-hover:opacity-75"
+                          : "hover:!opacity-100 group-hover:opacity-75"
+                      }`
+                    }
+                  >
                     {({ isActive }) => (
-                      <div className="flex items-center cursor-pointer my-1">
+                      <div className="flex items-center cursor-pointer my-1 w-full">
                         {emoji && (
                           <div className="inline-block text-[20px]/[20px]">
                             {emoji}
                           </div>
                         )}
-                        <div
-                          className={`relative h-8 ml-4 pt-2 transition-colors ${
-                            isActive
-                              ? "text-white group-hover:text-sky-100"
-                              : "text-sky-100 group-hover:text-sky-100"
-                          }`}
-                        >
-                          <div className="hover:text-white">{name}</div>
+                        <div className="relative h-8 ml-4 pt-2">
+                          <div>{name}</div>
                           <div
                             className={`mt-1 transition-all h-[2px] bg-sky-950 ${
                               isActive ? "w-full" : "w-0"
