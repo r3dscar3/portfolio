@@ -13,7 +13,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const { subject, body }: any = Object.fromEntries(formData);
+  const { email, phone, name, subject, body }: any =
+    Object.fromEntries(formData);
 
   const { data, error } = await resend.emails.send({
     from: "NolanPanther <no-reply@nolanpanther.com>",
@@ -22,6 +23,9 @@ export async function action({ request }: ActionFunctionArgs) {
     html: `
       <div>
         <h1>Form submission from nolanpanther.com</h1>
+        <p>From: ${name}</p>
+        <p>${email}</p>
+        <p>${phone}</p>
         <h2 style="padding: 4px 0">${subject}</h2>
         <p style="padding: 4px 0">${body}</p>
       </div>
@@ -36,6 +40,22 @@ export default function Contact() {
   const { formData, error }: any = useMemo(() => actionData || {}, []);
 
   const [bodyValue, setBodyValue] = useState("");
+
+  const nameInput = useFormInput({
+    initialValue: "",
+  });
+
+  const emailInput = useFormInput({
+    initialValue: "",
+    validators: [validation.isEmail({ message: "Please enter a valid email" })],
+  });
+
+  const phoneInput = useFormInput({
+    initialValue: "",
+    validators: [
+      validation.isPhone({ message: "Please enter a valid phone number" }),
+    ],
+  });
 
   const subjectInput = useFormInput({
     initialValue: "",
@@ -55,19 +75,40 @@ export default function Contact() {
       </p>
       <p className="mb-6">Looking forward to connecting!</p>
       {error ? (
-        <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-[400px] mx-auto p-6">
+        <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-[500px] mx-auto p-6">
           {error.message}
-        </div>  
+        </div>
       ) : formData ? (
-        <div className="text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-[400px] mx-auto p-6">
+        <div className="text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-[500px] mx-auto p-6">
           Message sent successfully!
         </div>
       ) : (
         <div className="flex items-center justify-center">
           <form
             method="POST"
-            className="space-y-6 px-2 max-w-[400px] w-[400px]"
+            className="space-y-6 px-2 max-w-[500px] w-full"
           >
+            <Input
+              {...nameInput.bind}
+              name="name"
+              placeholder="Name"
+              data-1p-ignore={true}
+            />
+
+            <Input
+              {...emailInput.bind}
+              name="email"
+              placeholder="Email"
+              data-1p-ignore={true}
+            />
+
+            <Input
+              {...phoneInput.bind}
+              name="phone"
+              placeholder="Phone Number"
+              data-1p-ignore={true}
+            />
+
             <Input
               {...subjectInput.bind}
               name="subject"
@@ -87,13 +128,18 @@ export default function Contact() {
             <div className="flex w-full justify-end">
               <button
                 disabled={
-                  (subjectInput.isEmpty || bodyValue.length === 0) &&
-                  !subjectInput.isValid
+                  ((emailInput.isEmpty && phoneInput.isEmpty) ||
+                    nameInput.isEmpty ||
+                    subjectInput.isEmpty ||
+                    bodyValue.length === 0) &&
+                  (!subjectInput.isValid ||
+                    !emailInput.isValid ||
+                    !phoneInput.isValid)
                 }
                 type="submit"
                 className="bg-sky-600 px-6 py-2 rounded-md border border-sky-800 text-white hover:bg-sky-700 transition-colors disabled:cursor-not-allowed disabled:bg-gray-300 disabled:border-gray-400"
               >
-                Send!
+                Send It!
               </button>
             </div>
           </form>
