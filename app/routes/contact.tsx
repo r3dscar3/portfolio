@@ -55,7 +55,9 @@ export default function Contact() {
       </p>
       <p className="mb-6">Looking forward to connecting!</p>
       {error ? (
-        <div className="text-red-700">{error.message}</div>
+        <div className="text-red-700 bg-red-300 border border-red-400 rounded-md w-full max-w-[400px] mx-auto">{error.message}</div>
+      ) : formData ? (
+        <div className="text-green-700 bg-green-300 border border-green-400 rounded-md w-full max-w-[400px] mx-auto">Message sent successfully!</div>
       ) : (
         <div className="flex items-center justify-center">
           <form
