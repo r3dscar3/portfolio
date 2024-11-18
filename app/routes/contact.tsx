@@ -86,7 +86,7 @@ export default function Contact() {
         <div className="flex items-center justify-center">
           <form
             method="POST"
-            className="space-y-6 px-2 max-w-[500px] w-full"
+            className="space-y-6 px-2 max-w-[500px] w-full mb-8"
           >
             <Input
               {...nameInput.bind}
