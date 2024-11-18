@@ -56,7 +56,7 @@ export default function Navigation({width}: {width: number}) {
         <motion.div
           initial={{ opacity: 0, scale: width <= 1024 ? 0 : 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="h-full flex flex-col fixed lg:relative inset-0 w-full bg-sky-600 z-20 p-4 lg:p-0"
+          className="h-full flex flex-col fixed lg:relative inset-0 w-full z-20 p-4 lg:p-0"
         >
           <XMarkIcon onClick={() => setShowMenu(false)} className="absolute right-3 w-8 h-8 text-sky-950 lg:hidden"/>
           <div className="flex flex-col pt-6 lg:pt-12 text-sky-200 group justify-start space-x-0">
