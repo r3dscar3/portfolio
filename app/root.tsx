@@ -31,27 +31,43 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="data:image/x-icon;base64,AA" />
+        <link
+          rel="preload"
+          href="https://use.typekit.net/wtd2mht.css"
+          as="style"
+          onLoad={(e) => {
+            const link = e.target as HTMLLinkElement;
+            link.onload = null;
+            link.rel = "stylesheet";
+          }}
+        />
+
         <link rel="stylesheet" href="https://use.typekit.net/wtd2mht.css" />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
+
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
           href="/favicon-32x32.png"
         />
+
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
           href="/favicon-16x16.png"
         />
+
         <link rel="manifest" href="/site.webmanifest"></link>
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <Meta />
         <Links />
       </head>
@@ -93,9 +109,9 @@ export default function App() {
       <motion.main
         className="relative z-10 flex h-full min-h-full w-full flex-grow flex-col"
         key={location.pathname}
-        initial={{  opacity: 0, scale: 0 }}
-        animate={{  opacity: 1, scale: 1 }}
-        exit={{  opacity: 0, scale: 0 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0 }}
       >
         {outlet}
       </motion.main>
