@@ -100,6 +100,7 @@ export default function Navigation({width}: {width: number}) {
               target="_blank"
               rel="noopener noreferrer nofollow"
               href="https://github.com/r3dscar3"
+              aria-label="Github - r3dscar3"
             >
               <GitHub className="w-6 h-6 fill-current" />
             </a>
@@ -107,13 +108,15 @@ export default function Navigation({width}: {width: number}) {
               target="_blank"
               rel="noopener noreferrer nofollow"
               href="https://codepen.io/r3dscar3"
+              aria-label="Codepen - r3dscar3"
             >
               <CodePen className="w-6 h-6 fill-current" />
             </a>
             <a
               target="_blank"
               rel="noopener noreferrer nofollow"
-              href="https://linkedin.com/r3dscar3"
+              href="https://www.linkedin.com/in/nolan-thompson-b73b9416/"
+              aria-label="LinkedIn - Nolan Thompson"
             >
               <LinkedIn className="w-6 h-6 fill-current" />
             </a>

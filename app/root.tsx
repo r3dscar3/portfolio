@@ -29,7 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { width } = dimensions;
 
   return (
-    <html>
+    <html lang="en">
       <head>
         <link rel="icon" href="data:image/x-icon;base64,AA" />
         <link rel="stylesheet" href="https://use.typekit.net/wtd2mht.css" />
