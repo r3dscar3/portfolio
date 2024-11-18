@@ -55,11 +55,11 @@ export default function Contact() {
       </p>
       <p className="mb-6">Looking forward to connecting!</p>
       {error ? (
-        <div className="text-red-700 bg-red-300 border border-red-400 rounded-md w-full max-w-[400px] mx-auto">
+        <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-[400px] mx-auto p-6">
           {error.message}
         </div>
       ) : formData ? (
-        <div className="text-green-700 bg-green-300 border border-green-400 rounded-md w-full max-w-[400px] mx-auto">
+        <div className="text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-[400px] mx-auto p-6">
           Message sent successfully!
         </div>
       ) : (
