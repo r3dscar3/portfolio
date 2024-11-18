@@ -1,8 +1,15 @@
+import { MetaFunction } from "@remix-run/react";
+
 import Bass from "~/icons/Bass";
 import Golf from "~/icons/Golf";
 import Hockey from "~/icons/Hockey";
 
 import Card from "~/components/Card";
+
+
+export const meta: MetaFunction = () => {
+  return [{ title: 'Nolan Thompson - Home' }, { name: 'description', content: 'Portfolio site for Nolan Thompson' }];
+};
 
 export default function Home() {
   return (

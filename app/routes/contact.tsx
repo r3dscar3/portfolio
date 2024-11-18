@@ -1,15 +1,22 @@
+import { useMemo, useState } from "react";
+
 import { Resend } from "resend";
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import { useActionData } from "@remix-run/react";
+import { ActionFunctionArgs, json, MetaFunction } from "@remix-run/node";
 
 import PageWrapper from "../components/PageWrapper";
 
 import useFormInput from "~/hooks/useFormInput";
+
 import validation from "~/utils/validation";
+
 import Input from "~/components/Input";
-import { useMemo, useState } from "react";
-import { useActionData } from "@remix-run/react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+export const meta: MetaFunction = () => {
+  return [{ title: 'Nolan Thompson - Contact' }, { name: 'description', content: 'Contact me' }];
+};
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

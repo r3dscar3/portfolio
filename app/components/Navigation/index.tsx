@@ -76,8 +76,8 @@ export default function Navigation({width}: {width: number}) {
                         <div
                           className={`relative h-8 ml-4 pt-2 transition-colors ${
                             isActive
-                              ? "text-white group-hover:text-sky-200"
-                              : "text-sky-200 group-hover:text-sky-200"
+                              ? "text-white group-hover:text-sky-100"
+                              : "text-sky-100 group-hover:text-sky-100"
                           }`}
                         >
                           <div className="hover:text-white">{name}</div>

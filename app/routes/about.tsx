@@ -1,4 +1,10 @@
+import { MetaFunction } from "@remix-run/react";
+
 import PageWrapper from "../components/PageWrapper";
+
+export const meta: MetaFunction = () => {
+  return [{ title: 'Nolan Thompson - About' }, { name: 'description', content: 'About me' }];
+};
 
 export default function About() {
   return (

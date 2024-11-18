@@ -1,7 +1,13 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { useMemo } from "react";
+
+import { useLoaderData } from "@remix-run/react";
+import { json, MetaFunction } from "@remix-run/node";
+
 import PageWrapper from "~/components/PageWrapper";
+
+export const meta: MetaFunction = () => {
+  return [{ title: 'Nolan Thompson - Skills' }, { name: 'description', content: 'My skills' }];
+};
 
 export function loader() {
   const softSkills: any = [
