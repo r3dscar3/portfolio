@@ -13,13 +13,19 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const { email, subject, body }: any = Object.fromEntries(formData);
+  const { subject, body }: any = Object.fromEntries(formData);
 
   const { data, error } = await resend.emails.send({
     from: "NolanPanther <no-reply@nolanpanther.com>",
-    to: ["nolanthompson34@gmail.com"],
+    to: ["nolan@nolanpanther.com"],
     subject,
-    html: body,
+    html: `
+      <div>
+        <h1>Form submission from nolanpanther.com</h1>
+        <h2> style="padding: 4px 0;">${subject}</h2>
+        <p style="padding: 4px 0;">${body}</p>
+      </div>
+    `,
   });
 
   return json({ formData: data, error });
@@ -44,8 +50,8 @@ export default function Contact() {
         quick chat about tech and development, I'm just a message away.
       </p>
       <p className="mb-6">
-        Feel free to reach out via this form or connect with me on LinkedIn. I aim
-        to respond within 24-48 hours.
+        Feel free to reach out via this form or connect with me on LinkedIn. I
+        aim to respond within 24-48 hours.
       </p>
       <p className="mb-6">Looking forward to connecting!</p>
       {error ? (
