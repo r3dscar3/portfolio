@@ -30,4 +30,8 @@
     h4 {
         @apply text-title4 font-semibold;
     }
+
+    a:not(#nav a) {
+        @apply text-sky-600 hover:text-sky-800 transition-colors;
+    }
 }

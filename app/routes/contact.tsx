@@ -86,7 +86,7 @@ export default function Contact() {
           a quick chat about tech and development, I'm just a message away.
         </p>
         <p>
-          Feel free to reach out via this form or connect with me on LinkedIn. I
+          Feel free to reach out via this form or connect with me on <a href="https://linkedin.com/in/nolan-panther" target="_blank" rel="noopener noreferrer nofollow">LinkedIn</a>. I
           aim to respond within 24-48 hours.
         </p>
         <p>Looking forward to connecting!</p>
