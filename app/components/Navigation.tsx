@@ -76,8 +76,8 @@ export default function Navigation({ width }: { width: number }) {
                     className={({ isActive }) =>
                       `w-full text-white transition-all ${
                         isActive
-                          ? "opacity-100 hover:!opacity-100 group-hover:opacity-75"
-                          : "opacity-75 hover:!opacity-100 group-hover:opacity-75"
+                          ? "opacity-100 hover:!opacity-100 group-hover:opacity-80"
+                          : "opacity-75 hover:!opacity-100 group-hover:opacity-80"
                       }`
                     }
                   >
