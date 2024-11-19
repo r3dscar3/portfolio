@@ -6,7 +6,7 @@ export default {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     fontFamily: {
-      kanit: ['Kanit', 'sans-serif'],
+      kanit: ['Kanit', 'Arial', 'sans-serif'],
     },
     fontSize: {
       ...defaultTheme.fontSize,

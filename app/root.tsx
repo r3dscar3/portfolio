@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useEffect, useCallback } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -28,16 +28,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const { width } = dimensions;
 
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap";
+    link.rel = "stylesheet";
+    link.media = "print";
+    link.onload = () => {
+      link.media = "all";
+    };
+    document.head.appendChild(link);
+  }, []);
+
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap"
-          rel="stylesheet"
-        />
-
         <link
           rel="apple-touch-icon"
           sizes="180x180"
