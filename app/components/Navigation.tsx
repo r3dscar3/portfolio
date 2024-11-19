@@ -102,6 +102,18 @@ export default function Navigation({ width }: { width: number }) {
                 );
               }
             })}
+            <a
+              href="/media/resume.pdf"
+              target="_blank"
+              className="w-full transition-all font-semibold hover:!text-white group-hover:text-nrt-blue-150"
+            >
+              <div className="flex items-center cursor-pointer my-1 w-full">
+                <div className="inline-block text-[20px]/[20px]">📄</div>
+                <div className="relative h-8 ml-4 pt-2">
+                  <div>Resume</div>
+                </div>
+              </div>
+            </a>
           </div>
 
           <div className="mt-auto flex items-center justify-around pb-1 text-sky-950 space-x-4">
