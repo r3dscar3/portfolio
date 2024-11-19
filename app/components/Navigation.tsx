@@ -56,7 +56,7 @@ export default function Navigation({ width }: { width: number }) {
         <motion.div
           initial={{ opacity: 0, scale: width <= 1024 ? 0 : 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="h-full flex flex-col fixed lg:relative inset-0 w-full z-20 p-4 lg:p-0 bg-sky-600"
+          className="h-full flex flex-col fixed lg:relative inset-0 w-full z-20 p-4 lg:p-0 bg-sky-700"
         >
           <XMarkIcon
             onClick={() => setShowMenu(false)}
@@ -76,8 +76,8 @@ export default function Navigation({ width }: { width: number }) {
                     className={({ isActive }) =>
                       `w-full text-white transition-all ${
                         isActive
-                          ? "opacity-100 hover:!opacity-100 group-hover:opacity-85"
-                          : "opacity-85 hover:!opacity-100 group-hover:opacity-85"
+                          ? "opacity-100 hover:!opacity-100 group-hover:opacity-80"
+                          : "opacity-80 hover:!opacity-100 group-hover:opacity-80"
                       }`
                     }
                   >
