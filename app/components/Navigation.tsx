@@ -137,7 +137,7 @@ export default function Navigation({ width }: { width: number }) {
             <a
               target="_blank"
               rel="noopener noreferrer nofollow"
-              href="www.linkedin.com/in/nolan-panther"
+              href="https://linkedin.com/in/nolan-panther"
               aria-label="LinkedIn - Nolan Thompson"
             >
               <LinkedIn className="w-6 h-6 fill-current" />
