@@ -150,7 +150,7 @@ export default function Contact() {
                 placeholder="What's up?"
                 name="body"
                 rows={12}
-                className="block w-full rounded-md text-footnote placeholder-gray-400"
+                className="block w-full rounded-md text-footnote placeholder-gray-400 border-gray-300"
               />
 
               <div className="flex w-full justify-end">
@@ -162,7 +162,7 @@ export default function Contact() {
                     body: bodyValue,
                   })}
                   type="submit"
-                  className="bg-sky-600 px-6 py-2 rounded-md border border-sky-800 text-white hover:bg-sky-700 transition-colors disabled:cursor-not-allowed disabled:bg-gray-300 disabled:border-gray-400"
+                  className="bg-sky-600 px-6 py-2 rounded-md border border-sky-800 text-white hover:bg-sky-700 transition-colors disabled:cursor-not-allowed disabled:bg-gray-300 disabled:border-gray-300"
                 >
                   Send It!
                 </button>
