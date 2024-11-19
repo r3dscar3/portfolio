@@ -102,6 +102,7 @@ export default function Navigation({ width }: { width: number }) {
                 );
               }
             })}
+
             <a
               href="/media/resume.pdf"
               target="_blank"
@@ -136,7 +137,7 @@ export default function Navigation({ width }: { width: number }) {
             <a
               target="_blank"
               rel="noopener noreferrer nofollow"
-              href="https://www.linkedin.com/in/nolan-thompson-b73b9416/"
+              href="www.linkedin.com/in/nolan-panther"
               aria-label="LinkedIn - Nolan Thompson"
             >
               <LinkedIn className="w-6 h-6 fill-current" />
