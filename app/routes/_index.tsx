@@ -38,17 +38,17 @@ export default function Home() {
         <div className="grid lg:grid-cols-3 gap-6 px-2">
           <Card
             icon={Golf}
-            title="Golf!"
+            title="Golf"
             copy="I have been golfing for over 30 years... Still suck, but I love it!"
           />
           <Card
             icon={Bass}
-            title="Bass!"
+            title="Bass"
             copy="Bass is the coolest instrument and if you don't believe me I can show 1 or 2 or 4 of them that might change your mind."
           />
           <Card
             icon={Hockey}
-            title="Hockey!"
+            title="Hockey"
             copy="Greatest sport in the world! I love playing and supporting such an amazing game."
           />
         </div>
