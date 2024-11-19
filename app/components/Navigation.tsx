@@ -74,10 +74,10 @@ export default function Navigation({ width }: { width: number }) {
                     key={`${idx}`}
                     onClick={() => setShowMenu(false)}
                     className={({ isActive }) =>
-                      `w-full text-white transition-colors ${
+                      `w-full text-white transition-all ${
                         isActive
-                          ? "hover:!opacity-100 group-hover:opacity-75"
-                          : "hover:!opacity-100 group-hover:opacity-75"
+                          ? "opacity-100 hover:!opacity-100 group-hover:opacity-75"
+                          : "opacity-75 hover:!opacity-100 group-hover:opacity-75"
                       }`
                     }
                   >
