@@ -71,16 +71,19 @@ export default function Contact() {
 
   return (
     <PageWrapper heading="Contact" emoji="☎️">
-      <p className="mb-6">
+      <div className="space-y-4 mb-10">
+      <p>
         Have a question, idea, or just want to connect? I'd love to hear from
         you! Whether it's about a job opening, a collaboration opportunity, or a
         quick chat about tech and development, I'm just a message away.
       </p>
-      <p className="mb-6">
+      <p>
         Feel free to reach out via this form or connect with me on LinkedIn. I
         aim to respond within 24-48 hours.
       </p>
-      <p className="mb-6">Looking forward to connecting!</p>
+      <p>Looking forward to connecting!</p>
+      </div>
+      
       {error ? (
         <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-[500px] mx-auto p-6">
           {error.message}

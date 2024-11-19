@@ -6,7 +6,10 @@ import { json, MetaFunction } from "@remix-run/node";
 import PageWrapper from "~/components/PageWrapper";
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Nolan Thompson - Skills' }, { name: 'description', content: 'My skills' }];
+  return [
+    { title: "Nolan Thompson - Skills" },
+    { name: "description", content: "My skills" },
+  ];
 };
 
 export function loader() {
@@ -50,7 +53,7 @@ export default function Skills() {
 
   return (
     <PageWrapper heading="Skills" emoji="👍">
-      <div className="space-y-10">
+      <div className="space-y-4">
         <p className="px-2">
           As a Staff Engineer, my role is about more than just writing great
           code—it's about driving impact at scale through technical leadership,
@@ -64,27 +67,25 @@ export default function Skills() {
           showcasing my approach to solving complex challenges, fostering
           innovation, and empowering teams to excel.
         </p>
+      </div>
 
-        
-
-        <div className="grid lg:grid-cols-2 gap-6 pb-6 p-2">
+      <div className="grid lg:grid-cols-2 gap-6 pb-6 p-2 mt-10">
         <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md">
-            <h2 className="mb-4">Tech Skills</h2>
-            <ul className="list-disc pl-6 space-y-2">
-              {techSkills.map((skill: string) => {
-                return <li key={skill}>{skill}</li>;
-              })}
-            </ul>
-          </div>
+          <h2 className="mb-4">Tech Skills</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            {techSkills.map((skill: string) => {
+              return <li key={skill}>{skill}</li>;
+            })}
+          </ul>
+        </div>
 
-          <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md">
-            <h2 className="mb-4">Soft Skills</h2>
-            <ul className="list-disc pl-6 space-y-2">
-              {softSkills.map((skill: string) => {
-                return <li key={skill}>{skill}</li>;
-              })}
-            </ul>
-          </div>
+        <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md">
+          <h2 className="mb-4">Soft Skills</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            {softSkills.map((skill: string) => {
+              return <li key={skill}>{skill}</li>;
+            })}
+          </ul>
         </div>
       </div>
     </PageWrapper>
