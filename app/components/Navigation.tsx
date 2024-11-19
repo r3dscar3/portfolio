@@ -39,7 +39,7 @@ export default function Navigation({ width }: { width: number }) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="flex items-center lg:flex-col lg:h-full w-full">
+    <div className="flex items-center lg:flex-col lg:h-full w-full bg-sky-600">
       <div
         onClick={() => navigate("/")}
         className="flex justify-center lg:w-full mr-4 lg:mr-0 mt-1 cursor-pointer text-sky-950"
