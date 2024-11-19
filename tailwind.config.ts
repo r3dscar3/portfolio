@@ -6,21 +6,19 @@ export default {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     fontFamily: {
-      rustica: ['rustica', 'sans-serif'],
+      kanit: ['Kanit', 'sans-serif'],
     },
     fontSize: {
       ...defaultTheme.fontSize,
-      title1: ["42px", "46px"],
-      title2: ["31px", "35px"],
-      title3: ["20px", "22px"],
-      title4: ["18px", "20px"],
-      subHeadline: ["17px", "19px"],
+      title1: ["52px", "56px"],
+      title2: ["36px", "40px"],
+      title3: ["22px", "24px"],
+      title4: ["20px", "22px"],
       body: ["18px", "20px"],
-      footnote: ["15px", "18px"],
-      compare: ["15px", "15px"],
-      caption1: ["14px", "16px"],
-      caption2: ["13px", "14px"],
-      caption3: ["11px", "13px"],
+      footnote: ["16px", "18px"],
+      caption1: ["15px", "17px"],
+      caption2: ["14px", "16px"],
+      caption3: ["12px", "14px"],
     },
     extend: {
       backgroundImage: {

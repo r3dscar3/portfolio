@@ -31,18 +31,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          rel="preload"
-          href="https://use.typekit.net/wtd2mht.css"
-          as="style"
-          onLoad={(e) => {
-            const link = e.target as HTMLLinkElement;
-            link.onload = null;
-            link.rel = "stylesheet";
-          }}
+          href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap"
+          rel="stylesheet"
         />
-
-        <link rel="stylesheet" href="https://use.typekit.net/wtd2mht.css" />
 
         <link
           rel="apple-touch-icon"

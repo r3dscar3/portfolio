@@ -4,7 +4,7 @@
 
 @layer base {
     html, body {
-        @apply h-full w-full min-h-full min-w-full font-rustica text-body;
+        @apply h-full w-full min-h-full min-w-full font-kanit text-body;
     }
 
     body {
@@ -16,15 +16,15 @@
     }
 
     h1 {
-        @apply text-title1 font-black;
+        @apply text-title1 font-extrabold;
     }
 
     h2 {
-        @apply text-title2 font-black;
+        @apply text-title2 font-extrabold;
     }
 
     h3 {
-        @apply text-title3 font-bold;
+        @apply text-title3 font-semibold;
     }
 
     h4 {
