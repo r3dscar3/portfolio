@@ -62,7 +62,7 @@ export default function Navigation({ width }: { width: number }) {
             onClick={() => setShowMenu(false)}
             className="absolute right-3 w-8 h-8 text-sky-950 lg:hidden"
           />
-          <div className="flex flex-col pt-6 lg:pt-12 text-sky-200 group justify-start space-x-0 w-full">
+          <div className="flex flex-col pt-6 lg:pt-12 text-nrt-blue-150 group justify-start space-x-0 w-full">
             {routes.map((route: any, idx: Number) => {
               if (idx !== 0) {
                 const { slug, emoji, name } = route;
@@ -74,10 +74,10 @@ export default function Navigation({ width }: { width: number }) {
                     key={`${idx}`}
                     onClick={() => setShowMenu(false)}
                     className={({ isActive }) =>
-                      `w-full transition-all ${
+                      `w-full transition-all font-semibold ${
                         isActive
-                          ? "text-white hover:!text-white group-hover:text-sky-200"
-                          : "hover:!text-white group-hover:text-sky-200"
+                          ? "text-white hover:!text-white group-hover:text-nrt-blue-150"
+                          : "hover:!text-white group-hover:text-nrt-blue-150"
                       }`
                     }
                   >

@@ -41,7 +41,13 @@ export default {
       cursor: {
         copy: "copy",
       },
-      colors: {},
+      colors: {
+        nrt: {
+          blue: {
+            150: "#BFE8FD",
+          }
+        }
+      },
       dropShadow: {
         outline: [
           "-1px 1px 0 #FFF",
