@@ -10,12 +10,16 @@ import useFormInput from "~/hooks/useFormInput";
 
 import validation from "~/utils/validation";
 
-import Input from "~/components/Input";
+import Input from "~/components/form/Input";
+import FormInput from "~/components/form/FormInput";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Nolan Thompson - Contact' }, { name: 'description', content: 'Contact me' }];
+  return [
+    { title: "Nolan Thompson - Contact" },
+    { name: "description", content: "Contact me" },
+  ];
 };
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -29,17 +33,25 @@ export async function action({ request }: ActionFunctionArgs) {
     subject,
     html: `
       <div>
-        <h1>Form submission from nolanpanther.com</h1>
         <p>From: ${name}</p>
         <p>${email}</p>
         <p>${phone}</p>
-        <h2 style="padding: 4px 0">${subject}</h2>
+        
+        <h1>Form submission from nolanpanther.com</h1>
         <p style="padding: 4px 0">${body}</p>
       </div>
     `,
   });
 
   return json({ formData: data, error });
+}
+
+function isContactValid({ email, phone }: any) {
+  return (!email.isEmpty || !phone.isEmpty) && email.isValid && phone.isValid;
+}
+
+function cantSend({ name, email, phone, body }: any) {
+  return !isContactValid({ email, phone }) || name.isEmpty || body.length === 0;
 }
 
 export default function Contact() {
@@ -50,6 +62,7 @@ export default function Contact() {
 
   const nameInput = useFormInput({
     initialValue: "",
+    validators: [validation.isRequired({ message: "Let me know who to contact" })],
   });
 
   const emailInput = useFormInput({
@@ -64,26 +77,21 @@ export default function Contact() {
     ],
   });
 
-  const subjectInput = useFormInput({
-    initialValue: "",
-    validators: [validation.isEmpty({ message: "Please add a subject" })],
-  });
-
   return (
     <PageWrapper heading="Contact" emoji="☎️">
       <div className="space-y-4 mb-10">
-      <p>
-        Have a question, idea, or just want to connect? I'd love to hear from
-        you! Whether it's about a job opening, a collaboration opportunity, or a
-        quick chat about tech and development, I'm just a message away.
-      </p>
-      <p>
-        Feel free to reach out via this form or connect with me on LinkedIn. I
-        aim to respond within 24-48 hours.
-      </p>
-      <p>Looking forward to connecting!</p>
+        <p>
+          Have a question, idea, or just want to connect? I'd love to hear from
+          you! Whether it's about a job opening, a collaboration opportunity, or
+          a quick chat about tech and development, I'm just a message away.
+        </p>
+        <p>
+          Feel free to reach out via this form or connect with me on LinkedIn. I
+          aim to respond within 24-48 hours.
+        </p>
+        <p>Looking forward to connecting!</p>
       </div>
-      
+
       {error ? (
         <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-[500px] mx-auto p-6">
           {error.message}
@@ -93,66 +101,74 @@ export default function Contact() {
           Message sent successfully!
         </div>
       ) : (
-        <div className="flex items-center justify-center">
-          <form
-            method="POST"
-            className="space-y-6 px-2 max-w-[500px] w-full mb-8"
-          >
-            <Input
-              {...nameInput.bind}
-              name="name"
-              placeholder="Name"
-              data-1p-ignore={true}
-            />
+        <div className="flex items-center justify-center mb-8">
+          <div className="py-4 px-2 bg-gray-200 rounded-md border border-gray-300 shadow-md">
+            <form method="POST" className="space-y-6 px-2 max-w-[500px] w-full">
+              <FormInput
+                inputProps={{
+                  ...nameInput,
+                  bind: {
+                    ...nameInput.bind,
+                    name: "name",
+                    placeholder: "Name",
+                    "data-1p-ignore": true,
+                  },
+                }}
+              />
 
-            <Input
-              {...emailInput.bind}
-              name="email"
-              placeholder="Email"
-              data-1p-ignore={true}
-            />
+              <div className="flex items-center justify-center">
+              <FormInput
+                inputProps={{
+                  ...emailInput,
+                  bind: {
+                    ...emailInput.bind,
+                    name: "email",
+                    placeholder: "Email",
+                    "data-1p-ignore": true,
+                  },
+                }}
+              />
 
-            <Input
-              {...phoneInput.bind}
-              name="phone"
-              placeholder="Phone Number"
-              data-1p-ignore={true}
-            />
+                <div className="px-2">or</div>
 
-            <Input
-              {...subjectInput.bind}
-              name="subject"
-              placeholder="Subject"
-              data-1p-ignore={true}
-            />
+                <FormInput
+                inputProps={{
+                  ...phoneInput,
+                  bind: {
+                    ...phoneInput.bind,
+                    name: "phone",
+                    placeholder: "Phone",
+                    "data-1p-ignore": true,
+                  },
+                }}
+              />
+              </div>
 
-            <textarea
-              value={bodyValue}
-              onChange={(e: any) => setBodyValue(e.target.value)}
-              placeholder="What's up?"
-              name="body"
-              rows={12}
-              className="block w-full rounded-md text-footnote"
-            />
+              <textarea
+                value={bodyValue}
+                onChange={(e: any) => setBodyValue(e.target.value)}
+                placeholder="What's up?"
+                name="body"
+                rows={12}
+                className="block w-full rounded-md text-footnote placeholder-gray-400"
+              />
 
-            <div className="flex w-full justify-end">
-              <button
-                disabled={
-                  ((emailInput.isEmpty && phoneInput.isEmpty) ||
-                    nameInput.isEmpty ||
-                    subjectInput.isEmpty ||
-                    bodyValue.length === 0) &&
-                  (!subjectInput.isValid ||
-                    !emailInput.isValid ||
-                    !phoneInput.isValid)
-                }
-                type="submit"
-                className="bg-sky-600 px-6 py-2 rounded-md border border-sky-800 text-white hover:bg-sky-700 transition-colors disabled:cursor-not-allowed disabled:bg-gray-300 disabled:border-gray-400"
-              >
-                Send It!
-              </button>
-            </div>
-          </form>
+              <div className="flex w-full justify-end">
+                <button
+                  disabled={cantSend({
+                    name: nameInput,
+                    email: emailInput,
+                    phone: phoneInput,
+                    body: bodyValue,
+                  })}
+                  type="submit"
+                  className="bg-sky-600 px-6 py-2 rounded-md border border-sky-800 text-white hover:bg-sky-700 transition-colors disabled:cursor-not-allowed disabled:bg-gray-300 disabled:border-gray-400"
+                >
+                  Send It!
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </PageWrapper>
