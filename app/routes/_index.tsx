@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => {
 
 export default function Home() {
   return (
-    <div className="space-y-10 p-4 relative flex h-full flex-col overflow-y-auto">
+    <div className="space-y-10 px-4 pt-2 pb-6 relative flex h-full flex-col overflow-y-auto">
       <h1 className="text-[69px]/[70px]">
         Hello!
         <br /> I'm Nolan.
