@@ -111,7 +111,7 @@ export default function Navigation({ width }: { width: number }) {
               <div className="flex items-center cursor-pointer my-1 w-full">
                 <div className="inline-block text-[20px]/[20px]">📄</div>
                 <div className="relative h-8 ml-4 pt-2">
-                  <div>Resume</div>
+                  <div>Résumé</div>
                 </div>
               </div>
             </a>
