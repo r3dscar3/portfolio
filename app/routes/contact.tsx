@@ -111,6 +111,7 @@ export default function Contact() {
                     ...nameInput.bind,
                     name: "name",
                     placeholder: "Name",
+                    autoComplete: "on",
                     "data-1p-ignore": true,
                   },
                 }}
@@ -124,6 +125,7 @@ export default function Contact() {
                     ...emailInput.bind,
                     name: "email",
                     placeholder: "Email",
+                    autoComplete: "on",
                     "data-1p-ignore": true,
                   },
                 }}
@@ -138,6 +140,7 @@ export default function Contact() {
                     ...phoneInput.bind,
                     name: "phone",
                     placeholder: "Phone",
+                    autoComplete: "on",
                     "data-1p-ignore": true,
                   },
                 }}
