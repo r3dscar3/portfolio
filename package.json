@@ -22,13 +22,13 @@
     "@tailwindcss/forms": "^0.5.3",
     "classnames": "^2.5.1",
     "cross-env": "^7.0.3",
-    "emailjs-com": "^3.2.0",
     "express": "^4.19.2",
     "framer-motion": "^11.11.17",
     "isbot": "^4.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "resend": "^4.0.1-alpha.0",
+    "run-p": "^0.0.0",
     "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {

@@ -71,7 +71,7 @@ export default function About() {
               <div>
                 <p className="pb-2 font-bold">Fliff</p>
                 Staff software Engineer
-                <br /> 2024 - Current
+                <br /> 2024 - 2026
               </div>
 
               <div>

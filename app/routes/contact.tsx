@@ -10,7 +10,6 @@ import useFormInput from "~/hooks/useFormInput";
 
 import validation from "~/utils/validation";
 
-import Input from "~/components/form/Input";
 import FormInput from "~/components/form/FormInput";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
