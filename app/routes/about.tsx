@@ -26,7 +26,7 @@ export default function About() {
           <div className="px-2">
             <div className="space-y-4">
               <div>
-                <p className="pb-2 font-bold uppercase">
+                <p className="pb-2 font-bold uppercase tracking-wider">
                   Javascript Development
                 </p>
                 Help lead the development of scalable and maintainable web
@@ -37,7 +37,7 @@ export default function About() {
                 continuously improve on development processes.
               </div>
               <div>
-                <p className="pb-2 font-bold uppercase">
+                <p className="pb-2 font-bold uppercase tracking-wider">
                   CI/CD Infrastructure
                 </p>
                 Implement and maintain robust CI/CD
@@ -49,7 +49,7 @@ export default function About() {
                 and efficient deployments.
               </div>
               <div>
-                <p className="pb-2 font-bold uppercase">
+                <p className="pb-2 font-bold uppercase tracking-wider">
                   Mentoring & Leadership
                 </p>
                 Mentor and guide junior and mid-level engineers, fostering
@@ -69,27 +69,27 @@ export default function About() {
           <div className="px-2">
             <div className="space-y-4 mb-6">
               <div>
-                <p className="pb-2 font-bold">Fliff</p>
+                <p className="pb-2 font-bold tracking-wider">Fliff</p>
                 Staff software Engineer
                 <br /> 2024 - 2026
               </div>
 
               <div>
-                <p className="pb-2 font-bold">Mojo</p>
+                <p className="pb-2 font-bold tracking-wider">Mojo</p>
                 Staff software Engineer
                 <br />
                 2021 - 2024
               </div>
 
               <div>
-                <p className="pb-2 font-bold">Walmart Global Tech</p>
+                <p className="pb-2 font-bold tracking-wider">Walmart Global Tech</p>
                 Staff software Engineer
                 <br />
                 2019 - 2021
               </div>
 
               <div>
-                <p className="pb-2 font-bold">NHL</p>
+                <p className="pb-2 font-bold tracking-wider">NHL</p>
                 Application Developer
                 <br />
                 2017 - 2019
