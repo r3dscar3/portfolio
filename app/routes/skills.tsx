@@ -1,9 +1,8 @@
-import { useMemo } from "react";
-
-import { useLoaderData } from "@remix-run/react";
-import { json, MetaFunction } from "@remix-run/node";
+import { MetaFunction, json } from "@remix-run/node";
 
 import PageWrapper from "~/components/PageWrapper";
+import { useLoaderData } from "@remix-run/react";
+import { useMemo } from "react";
 
 export const meta: MetaFunction = () => {
   return [

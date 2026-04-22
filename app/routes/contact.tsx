@@ -1,16 +1,12 @@
+import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node";
 import { useMemo, useState } from "react";
 
+import FormInput from "~/components/form/FormInput";
+import PageWrapper from "../components/PageWrapper";
 import { Resend } from "resend";
 import { useActionData } from "@remix-run/react";
-import { ActionFunctionArgs, json, MetaFunction } from "@remix-run/node";
-
-import PageWrapper from "../components/PageWrapper";
-
 import useFormInput from "~/hooks/useFormInput";
-
 import validation from "~/utils/validation";
-
-import FormInput from "~/components/form/FormInput";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
