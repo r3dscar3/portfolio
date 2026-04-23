@@ -1,7 +1,6 @@
-import { MetaFunction, json } from "@remix-run/node";
-
+import { MetaFunction } from "react-router";
 import PageWrapper from "~/components/PageWrapper";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 import { useMemo } from "react";
 
 export const meta: MetaFunction = () => {
@@ -43,7 +42,7 @@ export function loader() {
     "Promoting a culture of learning, experimentation, and adaptability.",
   ];
 
-  return json({ softSkills, techSkills });
+  return ({ softSkills, techSkills });
 }
 
 export default function Skills() {

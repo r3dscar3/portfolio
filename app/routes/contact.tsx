@@ -1,10 +1,10 @@
-import { ActionFunctionArgs, MetaFunction, json } from "@remix-run/node";
+import { ActionFunctionArgs, MetaFunction } from "react-router";
 import { useMemo, useState } from "react";
 
 import FormInput from "~/components/form/FormInput";
 import PageWrapper from "../components/PageWrapper";
 import { Resend } from "resend";
-import { useActionData } from "@remix-run/react";
+import { useActionData } from "react-router";
 import useFormInput from "~/hooks/useFormInput";
 import validation from "~/utils/validation";
 
@@ -38,7 +38,7 @@ export async function action({ request }: ActionFunctionArgs) {
     `,
   });
 
-  return json({ formData: data, error });
+  return ({ formData: data, error });
 }
 
 function isContactValid({ email, phone }: any) {

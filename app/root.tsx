@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import "./styles/tailwind.css";
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -8,13 +8,11 @@ import {
   ScrollRestoration,
   useLocation,
   useOutlet,
-} from "@remix-run/react";
-
-import useResizeObserver from "./hooks/useResizeObserver";
-
-import "./styles/tailwind.css";
+} from "react-router";
+import { useCallback, useEffect } from "react";
 
 import Navigation from "./components/Navigation";
+import useResizeObserver from "./hooks/useResizeObserver";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [observeResize, dimensions]: any = useResizeObserver();

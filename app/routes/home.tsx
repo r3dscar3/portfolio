@@ -2,7 +2,7 @@ import Bass from "~/icons/Bass";
 import Card from "~/components/Card";
 import Golf from "~/icons/Golf";
 import Hockey from "~/icons/Hockey";
-import { MetaFunction } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
 
 export const meta: MetaFunction = () => {
   return [

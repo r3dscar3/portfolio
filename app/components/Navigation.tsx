@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { motion } from "framer-motion";
 import { Bars3Icon } from "@heroicons/react/16/solid";
-import { NavLink, useNavigate } from "@remix-run/react";
+import { NavLink, useNavigate } from "react-router";
 
 import GitHub from "../icons/GitHub";
 import Glasses from "../icons/Glasses";
