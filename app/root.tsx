@@ -73,15 +73,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
           ref={wrapperRef}
           className="flex flex-col lg:flex-row w-full h-dvh"
         >
-          <div className="relative flex lg:flex-col lg:min-w-[200px] lg:max-w-[200px] lg:h-dvh bg-sky-700 border-b-8 lg:border-r-8 lg:border-b-0 border-sky-950 text-white p-4 z-20">
-            <div className="z-10 max-w-[8px] w-2 h-3 bg-gradient-to-r from-sky-700 to-gray-100 from-50% to-50% absolute bottom-[-11px] right-[3px] rotate-90 lg:rotate-0 lg:top-0 lg:right-[-8px] overflow-hidden ">
-              <div className="absolute w-4 h-4 rotate-45 bg-sky-950 left-[-5px] bottom-[-12px]" />
+          <div className="relative flex lg:flex-col lg:min-w-50 lg:max-w-50 lg:h-dvh bg-sky-700 border-b-9 lg:border-r-9 lg:border-b-0 border-sky-950 text-white p-4 z-20">
+            <div className="z-10 max-w-2 w-2 h-3 bg-linear-to-r from-sky-700 to-gray-100 from-50% to-50% absolute -bottom-2.75 -right-0.75 rotate-90 lg:rotate-0 lg:top-0 lg:-right-2 overflow-hidden ">
+              <div className="absolute w-4 h-4 rotate-45 bg-sky-950 -left-1 -bottom-3" />
             </div>
 
             <Navigation width={width} />
 
-            <div className="z-10 max-w-[8px] w-2 h-3 bg-gradient-to-l lg:bg-gradient-to-r from-sky-700 to-gray-100 from-50% to-50% absolute bottom-[-11px] left-[3px] -rotate-90 lg:rotate-0 lg:bottom-0 lg:left-auto lg:right-[-8px] overflow-hidden ">
-              <div className="absolute w-4 h-4 rotate-45 bg-sky-950 left-[-5px] bottom-[-12px] lg:bottom-auto lg:top-[-12px]" />
+            <div className="z-10 max-w-2 w-2 h-3 bg-linear-to-l lg:bg-linear-to-r from-sky-700 to-gray-100 from-50% to-50% absolute -bottom-2.75 left-0.75 -rotate-90 lg:rotate-0 lg:bottom-0 lg:left-auto lg:-right-2 overflow-hidden ">
+              <div className="absolute w-4 h-4 rotate-45 bg-sky-950 -left-1 -bottom-3 lg:bottom-auto lg:-top-3" />
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export default function App() {
   return (
     <AnimatePresence mode="sync" initial={false}>
       <motion.main
-        className="relative z-10 flex h-full min-h-full w-full flex-grow flex-col"
+        className="relative z-10 flex h-full min-h-full w-full grow flex-col"
         key={location.pathname}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}

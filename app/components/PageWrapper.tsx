@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface PageWrapperProps {
   heading: string;
@@ -15,7 +15,7 @@ const PageWrapper = ({ children, heading, emoji }: PageWrapperProps) => {
       </div>
 
       <div className="relative h-full p-4">
-        <div className="flex flex-col max-w-[1200px]">{children}</div>
+        <div className="flex flex-col max-w-300">{children}</div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, MetaFunction } from "react-router";
+import type { ActionFunctionArgs, MetaFunction } from "react-router";
 import { useMemo, useState } from "react";
 
 import FormInput from "~/components/form/FormInput";
@@ -88,17 +88,17 @@ export default function Contact() {
       </div>
 
       {error ? (
-        <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-[500px] mx-auto p-6">
+        <div className="text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-125 mx-auto p-6">
           {error.message}
         </div>
       ) : formData ? (
-        <div className="text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-[500px] mx-auto p-6">
+        <div className="text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-125 mx-auto p-6">
           Message sent successfully!
         </div>
       ) : (
         <div className="flex items-center justify-center mb-8">
           <div className="py-4 px-2 bg-gray-200 rounded-md border border-gray-300 shadow-md">
-            <form method="POST" className="space-y-6 px-2 max-w-[500px] w-full">
+            <form method="POST" className="space-y-6 px-2 max-w-125 w-full">
               <FormInput
                 inputProps={{
                   ...nameInput,

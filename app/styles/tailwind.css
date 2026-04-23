@@ -1,35 +1,112 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  /* Font family */
+  --font-kanit: "Kanit", Arial, sans-serif;
+
+  /* Font sizes (size / line-height) */
+  --text-title1: 52px;
+  --text-title1--line-height: 56px;
+  --text-title2: 36px;
+  --text-title2--line-height: 40px;
+  --text-title3: 22px;
+  --text-title3--line-height: 24px;
+  --text-title4: 20px;
+  --text-title4--line-height: 22px;
+  --text-body: 18px;
+  --text-body--line-height: 20px;
+  --text-footnote: 16px;
+  --text-footnote--line-height: 18px;
+  --text-caption1: 15px;
+  --text-caption1--line-height: 17px;
+  --text-caption2: 14px;
+  --text-caption2--line-height: 16px;
+  --text-caption3: 12px;
+  --text-caption3--line-height: 14px;
+
+  /* Background images */
+  --background-image-ellipse: radial-gradient(
+    ellipse at center,
+    var(--tw-gradient-stops)
+  );
+  --background-image-nav: url(/public/images/nav-bg.png);
+
+  /* Rotate */
+  --rotate-45: 45deg;
+  --rotate-135: 135deg;
+
+  /* Height */
+  --height-7_5: 30px;
+
+  /* Max height */
+  --max-height-2\/3: calc(100vh / 3);
+  --max-height-1\/2: calc(100vh / 2);
+
+  /* Cursor */
+  --cursor-copy: copy;
+
+  /* Colors */
+  --color-nrt-blue-150: #bfe8fd;
+
+  /* Drop shadow */
+  --drop-shadow-outline:
+    -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+
+  /* Keyframes */
+  --keyframes-wiggle: {
+    0%,
+    100% {
+      transform: rotate(-12deg);
+    }
+    50% {
+      transform: rotate(12deg);
+    }
+  };
+  --keyframes-animate-coin: {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  };
+
+  /* Animations */
+  --animation-wiggle: wiggle 0.5s ease-in-out;
+  --animation-coin: animate-coin 2s ease-in-out infinite;
+}
 
 @layer base {
-    html, body {
-        @apply h-full w-full min-h-full min-w-full font-kanit text-body;
-    }
-
-    body {
-        @apply text-gray-600;
-    }
-
-    h1, h2, h3, h4 {
-        @apply text-sky-950;
-    }
-
-    h1 {
-        @apply text-title1 font-extrabold;
-    }
-
-    h2 {
-        @apply text-title2 font-extrabold;
-    }
-
-    h3 {
-        @apply text-title3 font-semibold;
-    }
-
-    h4 {
-        @apply text-title4 font-semibold;
-    }
-
-    a:not(#nav a) {
-        @apply text-sky-600 hover:text-sky-800 transition-colors;
-    }
+  html,
+  body {
+    @apply h-full w-full min-h-full min-w-full font-kanit text-body;
+  }
+  body {
+    @apply text-gray-600;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-sky-950;
+  }
+  h1 {
+    @apply text-title1 font-extrabold;
+  }
+  h2 {
+    @apply text-title2 font-extrabold;
+  }
+  h3 {
+    @apply text-title3 font-semibold;
+  }
+  h4 {
+    @apply text-title4 font-semibold;
+  }
+  a:not(#nav a) {
+    @apply text-sky-600 hover:text-sky-800 transition-colors;
+  }
 }

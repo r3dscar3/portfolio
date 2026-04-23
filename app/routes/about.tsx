@@ -1,4 +1,4 @@
-import { MetaFunction } from "react-router";
+import type { MetaFunction } from "react-router";
 import PageWrapper from "../components/PageWrapper";
 
 export const meta: MetaFunction = () => {

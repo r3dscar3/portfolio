@@ -1,4 +1,4 @@
-import { MetaFunction } from "react-router";
+import type { MetaFunction } from "react-router";
 import PageWrapper from "~/components/PageWrapper";
 import { useLoaderData } from "react-router";
 import { useMemo } from "react";
@@ -42,7 +42,7 @@ export function loader() {
     "Promoting a culture of learning, experimentation, and adaptability.",
   ];
 
-  return ({ softSkills, techSkills });
+  return { softSkills, techSkills };
 }
 
 export default function Skills() {

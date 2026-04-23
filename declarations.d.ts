@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 declare module '*.css' {
     const content: { [className: string]: string };
