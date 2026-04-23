@@ -9,11 +9,11 @@ interface CardProps {
 export default function Card({ icon: Icon, title, copy }: CardProps) {
   return (
     <div className="bg-gray-200 rounded-md shadow-md flex flex-col items-center p-4 border border-gray-300">
-      <div className="w-24 h-24">
-        <Icon className="fill-sky-950" />
+      <div className="w-30 h-30">
+        <Icon className="fill-gray-600" />
       </div>
-      <h3>{title}</h3>
-      <p className="py-3 text-footnote text-gray-600">{copy}</p>
+      <h3 className="text-gray-700 w-full text-left">{title}</h3>
+      <p className="py-3 text-gray-700 w-full text-left">{copy}</p>
     </div>
   );
 }
