@@ -14,13 +14,13 @@ type Pages = {
   "/": {
     params: {};
   };
-  "/about": {
+  "/contact": {
     params: {};
   };
   "/skills": {
     params: {};
   };
-  "/contact": {
+  "/about": {
     params: {};
   };
 };
@@ -28,30 +28,30 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/about" | "/skills" | "/contact";
-  };
-  "routes/home.tsx": {
-    id: "routes/home";
-    page: "/";
-  };
-  "routes/about.tsx": {
-    id: "routes/about";
-    page: "/about";
-  };
-  "routes/skills.tsx": {
-    id: "routes/skills";
-    page: "/skills";
+    page: "/" | "/contact" | "/skills" | "/about";
   };
   "routes/contact.tsx": {
     id: "routes/contact";
     page: "/contact";
   };
+  "routes/_index.tsx": {
+    id: "routes/_index";
+    page: "/";
+  };
+  "routes/skills.tsx": {
+    id: "routes/skills";
+    page: "/skills";
+  };
+  "routes/about.tsx": {
+    id: "routes/about";
+    page: "/about";
+  };
 };
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
-  "routes/home": typeof import("./app/routes/home.tsx");
-  "routes/about": typeof import("./app/routes/about.tsx");
-  "routes/skills": typeof import("./app/routes/skills.tsx");
   "routes/contact": typeof import("./app/routes/contact.tsx");
+  "routes/_index": typeof import("./app/routes/_index.tsx");
+  "routes/skills": typeof import("./app/routes/skills.tsx");
+  "routes/about": typeof import("./app/routes/about.tsx");
 };
