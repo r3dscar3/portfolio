@@ -1,5 +1,5 @@
 # portfolio
-Remix with Tailwind css
+React Router v7 App
 
 ## Scripts
 `npm run dev` - start server in dev mode
