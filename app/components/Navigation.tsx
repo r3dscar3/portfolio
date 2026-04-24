@@ -73,7 +73,7 @@ export default function Navigation({ width }: { width: number }) {
                     key={`${idx}`}
                     onClick={() => setShowMenu(false)}
                     className={({ isActive }) =>
-                      `w-full transition-all font-semibold ${
+                      `w-full transition-all ${
                         isActive
                           ? "text-white hover:text-white! group-hover:text-nrt-blue-150"
                           : "hover:text-white! group-hover:text-nrt-blue-150"
@@ -105,7 +105,7 @@ export default function Navigation({ width }: { width: number }) {
             <a
               href="/media/resume.pdf"
               target="_blank"
-              className="w-full transition-all font-semibold hover:text-white! group-hover:text-nrt-blue-150"
+              className="w-full transition-all hover:text-white! group-hover:text-nrt-blue-150"
             >
               <div className="flex items-center cursor-pointer my-1 w-full">
                 <div className="inline-block text-[20px]/[20px]">📄</div>

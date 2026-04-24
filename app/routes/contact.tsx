@@ -38,7 +38,7 @@ export async function action({ request }: ActionFunctionArgs) {
     `,
   });
 
-  return ({ formData: data, error });
+  return { formData: data, error };
 }
 
 function isContactValid({ email, phone }: any) {
@@ -57,7 +57,9 @@ export default function Contact() {
 
   const nameInput = useFormInput({
     initialValue: "",
-    validators: [validation.isRequired({ message: "Let me know who to contact" })],
+    validators: [
+      validation.isRequired({ message: "Let me know who to contact" }),
+    ],
   });
 
   const emailInput = useFormInput({
@@ -74,17 +76,24 @@ export default function Contact() {
 
   return (
     <PageWrapper heading="Contact" emoji="☎️">
-      <div className="space-y-4 mb-10">
-        <p>
+      <div className="space-y-4 mt-4 mb-10">
+        <p className="text-title3 italic">
           Have a question, idea, or just want to connect? I'd love to hear from
           you! Whether it's about a job opening, a collaboration opportunity, or
           a quick chat about tech and development, I'm just a message away.
         </p>
         <p>
-          Feel free to reach out via this form or connect with me on <a href="https://linkedin.com/in/nolan-panther" target="_blank" rel="noopener noreferrer nofollow">LinkedIn</a>. I
-          aim to respond within 24-48 hours.
+          Feel free to reach out via this form or connect with me on{" "}
+          <a
+            href="https://linkedin.com/in/nolan-panther"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            LinkedIn
+          </a>
+          . I aim to respond within 24-48 hours. <br />
+          Looking forward to connecting!
         </p>
-        <p>Looking forward to connecting!</p>
       </div>
 
       {error ? (
@@ -113,33 +122,33 @@ export default function Contact() {
               />
 
               <div className="flex items-center justify-center">
-              <FormInput
-                inputProps={{
-                  ...emailInput,
-                  bind: {
-                    ...emailInput.bind,
-                    name: "email",
-                    placeholder: "Email",
-                    autoComplete: "on",
-                    "data-1p-ignore": true,
-                  },
-                }}
-              />
+                <FormInput
+                  inputProps={{
+                    ...emailInput,
+                    bind: {
+                      ...emailInput.bind,
+                      name: "email",
+                      placeholder: "Email",
+                      autoComplete: "on",
+                      "data-1p-ignore": true,
+                    },
+                  }}
+                />
 
                 <div className="px-2">or</div>
 
                 <FormInput
-                inputProps={{
-                  ...phoneInput,
-                  bind: {
-                    ...phoneInput.bind,
-                    name: "phone",
-                    placeholder: "Phone",
-                    autoComplete: "on",
-                    "data-1p-ignore": true,
-                  },
-                }}
-              />
+                  inputProps={{
+                    ...phoneInput,
+                    bind: {
+                      ...phoneInput.bind,
+                      name: "phone",
+                      placeholder: "Phone",
+                      autoComplete: "on",
+                      "data-1p-ignore": true,
+                    },
+                  }}
+                />
               </div>
 
               <textarea

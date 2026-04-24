@@ -18,7 +18,7 @@ export default function Home() {
         Hello!
         <br /> I'm Nolan.
       </h1>
-      <p className="px-2">
+      <p className="px-2 text-title3 italic">
         As a Software Engineer with over 20 years of experience in web
         development, I bring a wealth of knowledge and a proven track record of
         excellence to every project I undertake. Throughout my career, I have
@@ -34,9 +34,9 @@ export default function Home() {
         <p className="px-2 mb-6">
           What sets me apart goes beyond the code. Over two decades, I've grown
           from graphic designer to staff engineer at organizations like{" "}
-          <span className="font-semibold">Walmart Global Tech</span> & the {" "}
-          <span className="font-semibold">NHL</span> — a path that's given me
-          a rare instinct for the intersection of design and engineering. I
+          <span className="font-semibold">Walmart Global Tech</span> & the{" "}
+          <span className="font-semibold">NHL</span> — a path that's given me a
+          rare instinct for the intersection of design and engineering. I
           specialize in building the systems behind great products: robust CI/CD
           pipelines, maintainable JavaScript architectures, and the kind of
           deployment infrastructure teams can actually rely on. Just as

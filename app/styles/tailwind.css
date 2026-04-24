@@ -83,7 +83,7 @@
 @layer base {
   html,
   body {
-    @apply h-full w-full min-h-full min-w-full font-kanit text-body;
+    @apply h-full w-full min-h-full min-w-full font-kanit text-body font-light;
   }
   body {
     @apply text-gray-600;

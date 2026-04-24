@@ -11,9 +11,9 @@ export const meta: MetaFunction = () => {
 export default function About() {
   return (
     <PageWrapper heading="About" emoji="😎">
-      <div className="space-y-10">
+      <div className="space-y-10 mt-4">
         <div>
-          <p className="px-2">
+          <p className="px-2 text-title3 italic">
             I am committed to building a collaborative environment where
             creativity and technical prowess thrive. As a mentor and leader, I
             inspire and elevate my peers, contributing to a culture of
