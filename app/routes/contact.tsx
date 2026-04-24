@@ -1,18 +1,19 @@
-import type { ActionFunctionArgs, MetaFunction } from 'react-router';
 import { useMemo, useState } from 'react';
 
-import FormInput from '~/components/form/FormInput';
+import type { ActionFunctionArgs } from 'react-router';
+import FormInput from '../components/form/FormInput';
 import PageWrapper from '../components/PageWrapper';
 import { Resend } from 'resend';
+import type { Route } from './+types/contact';
 import { useActionData } from 'react-router';
-import useFormInput from '~/hooks/useFormInput';
-import validation from '~/utils/validation';
+import useFormInput from '../hooks/useFormInput';
+import validation from '../utils/validation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const meta: MetaFunction = () => {
+export function meta({}: Route.MetaArgs) {
   return [{ title: 'Nolan Thompson - Contact' }, { name: 'description', content: 'Contact me' }];
-};
+}
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

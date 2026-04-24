@@ -1,9 +1,9 @@
-import type { MetaFunction } from 'react-router';
 import PageWrapper from '../components/PageWrapper';
+import type { Route } from './+types/about';
 
-export const meta: MetaFunction = () => {
+export function meta({}: Route.MetaArgs) {
   return [{ title: 'Nolan Thompson - About' }, { name: 'description', content: 'About me' }];
-};
+}
 
 export default function About() {
   return (

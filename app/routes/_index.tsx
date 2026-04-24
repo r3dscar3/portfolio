@@ -1,15 +1,15 @@
-import Bass from '~/icons/Bass';
-import Card from '~/components/Card';
-import Golf from '~/icons/Golf';
-import Hockey from '~/icons/Hockey';
-import type { MetaFunction } from 'react-router';
+import Bass from '../icons/Bass';
+import Card from '../components/Card';
+import Golf from '../icons/Golf';
+import Hockey from '../icons/Hockey';
+import type { Route } from './+types/_index';
 
-export const meta: MetaFunction = () => {
+export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Nolan Thompson - Home' },
     { name: 'description', content: 'Portfolio site for Nolan Thompson' },
   ];
-};
+}
 
 export default function Home() {
   return (

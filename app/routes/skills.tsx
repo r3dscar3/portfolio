@@ -1,10 +1,11 @@
-import PageWrapper from '~/components/PageWrapper';
-import { useLoaderData, type MetaFunction } from 'react-router';
+import PageWrapper from '../components/PageWrapper';
+import type { Route } from './+types/skills';
+import { useLoaderData } from 'react-router';
 import { useMemo } from 'react';
 
-export const meta: MetaFunction = () => {
+export function meta({}: Route.MetaArgs) {
   return [{ title: 'Nolan Thompson - Skills' }, { name: 'description', content: 'My skills' }];
-};
+}
 
 export function loader() {
   const softSkills: any = [
