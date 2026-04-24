@@ -49,16 +49,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <div ref={wrapperRef} className='flex flex-col lg:flex-row w-full h-dvh'>
-          <div className='relative flex lg:flex-col lg:min-w-50 lg:max-w-50 lg:h-dvh bg-sky-700 border-b-9 lg:border-r-9 lg:border-b-0 border-sky-950 text-white p-4 z-20'>
-            <div className='z-10 max-w-2 w-2.25 h-3 bg-linear-to-r from-sky-700 to-gray-100 from-50% to-50% absolute -bottom-2.5 right-0 rotate-90 lg:rotate-0 lg:top-0 lg:-right-2 overflow-hidden '>
-              <div className='absolute w-4 h-4 rotate-45 bg-sky-950 -left-1 -bottom-3' />
-            </div>
-
+          <div className='relative flex justify-left items-center lg:items-left lg:justify-center lg:flex-col lg:min-w-50 lg:max-w-50 lg:h-dvh bg-sky-700 text-white p-4 z-20'>
             <Navigation width={width} />
 
-            <div className='z-10 max-w-2 w-2.25 h-3 bg-linear-to-l lg:bg-linear-to-r from-sky-700 to-gray-100 from-50% to-50% absolute -bottom-2.5 left-0 -rotate-90 lg:rotate-0 lg:bottom-0 lg:left-auto lg:-right-2 overflow-hidden '>
-              <div className='absolute w-4 h-4 rotate-45 bg-sky-950 -left-1 -bottom-3 lg:bottom-auto lg:-top-3' />
-            </div>
+            {/* divider */}
+            <div className='absolute h-2 w-auto lg:h-auto top-15 lg:left-49 inset-x-1.25 lg:inset-y-1.25 lg:w-2 bg-sky-950 rounded-sm corner-bevel' />
+            {/* end divider */}
           </div>
 
           <div className='w-full min-h-[calc(100dvh-78px)] lg:h-dvh lg:min-h-dvh bg-gray-100'>

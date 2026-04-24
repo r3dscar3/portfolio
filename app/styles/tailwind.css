@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/forms";
+@plugin "@toolwind/corner-shape";
 
 @theme {
   /* Font family */
