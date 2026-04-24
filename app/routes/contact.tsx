@@ -17,19 +17,19 @@ export function meta({}: Route.MetaArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const { email, phone, name, subject, body }: any = Object.fromEntries(formData);
+  const { email, phone, name, body }: any = Object.fromEntries(formData);
 
   const { data, error } = await resend.emails.send({
     from: 'NolanPanther <no-reply@nolanpanther.com>',
     to: ['nolan@nolanpanther.com'],
-    subject,
+    subject: "Email from NolanPanther.com",
     html: `
       <div>
         <p>From: ${name}</p>
         <p>${email}</p>
         <p>${phone}</p>
         
-        <h1>Form submission from nolanpanther.com</h1>
+        <h1>Form submission from NolanPanther.com</h1>
         <p style="padding: 4px 0">${body}</p>
       </div>
     `,
