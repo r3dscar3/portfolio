@@ -31,7 +31,7 @@ export default function Home() {
 
       <div>
         <h2 className="mb-2">Work Overview</h2>
-        <p className="px-2 mb-6">
+        <p className="px-2">
           What sets me apart goes beyond the code. Over two decades, I've grown
           from graphic designer to staff engineer at organizations like{" "}
           <span className="font-semibold">Walmart Global Tech</span> & the{" "}

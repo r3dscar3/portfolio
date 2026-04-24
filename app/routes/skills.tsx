@@ -50,26 +50,28 @@ export default function Skills() {
 
   return (
     <PageWrapper heading="Skills" emoji="👍">
-      <div className="space-y-4 mt-4 mb-10">
-        <p className="px-2 text-title3 italic">
-          As a Staff Engineer, my role is about more than just writing great
-          code—it's about driving impact at scale through technical leadership,
-          strategic thinking, and collaboration. Over the years, I've honed a
-          set of core skills that enable me to deliver robust solutions, guide
-          teams, and align technology with business goals.
-        </p>
+      <div className="space-y-10">
+        <div className="space-y-4 mt-4">
+          <p className="px-2 text-title3 italic">
+            As a Staff Engineer, my role is about more than just writing great
+            code—it's about driving impact at scale through technical
+            leadership, strategic thinking, and collaboration. Over the years,
+            I've honed a set of core skills that enable me to deliver robust
+            solutions, guide teams, and align technology with business goals.
+          </p>
 
-        <p className="px-2">
-          This page highlights the areas I focus on as a Staff Engineer,
-          showcasing my approach to solving complex challenges, fostering
-          innovation, and empowering teams to excel.
-        </p>
-      </div>
+          <p className="px-2">
+            This page highlights the areas I focus on as a Staff Engineer,
+            showcasing my approach to solving complex challenges, fostering
+            innovation, and empowering teams to excel.
+          </p>
+        </div>
 
-      <div className="grid lg:grid-cols-2 gap-6 px-2 pb-16">
-        <SkillSet title="Tech Skills" skills={techSkills} />
+        <div className="grid lg:grid-cols-2 gap-6 px-2">
+          <SkillSet title="Tech Skills" skills={techSkills} />
 
-        <SkillSet title="Soft Skills" skills={softSkills} />
+          <SkillSet title="Soft Skills" skills={softSkills} />
+        </div>
       </div>
     </PageWrapper>
   );
@@ -77,10 +79,10 @@ export default function Skills() {
 
 const SkillSet = ({ title, skills }: { title: string; skills: string[] }) => {
   return (
-    <div>
+    <div className="flex flex-col">
       <h2 className="mb-4">{title}</h2>
       <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md h-full">
-        <ul className="list-disc pl-6 space-y-2">
+        <ul className="list-disc pl-6 space-y-2 h-full">
           {skills.map((skill: string) => {
             return <li key={skill}>{skill}</li>;
           })}
