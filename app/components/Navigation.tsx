@@ -73,7 +73,7 @@ export default function Navigation({ width }: { width: number }) {
                     key={`${idx}`}
                     onClick={() => setShowMenu(false)}
                     className={({ isActive }) =>
-                      `w-full transition-all ${
+                      `w-full transition-all font-normal ${
                         isActive
                           ? "text-white hover:text-white! group-hover:text-nrt-blue-150"
                           : "hover:text-white! group-hover:text-nrt-blue-150"
