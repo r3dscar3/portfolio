@@ -1,72 +1,69 @@
-import Bass from "~/icons/Bass";
-import Card from "~/components/Card";
-import Golf from "~/icons/Golf";
-import Hockey from "~/icons/Hockey";
-import type { MetaFunction } from "react-router";
+import Bass from '~/icons/Bass';
+import Card from '~/components/Card';
+import Golf from '~/icons/Golf';
+import Hockey from '~/icons/Hockey';
+import type { MetaFunction } from 'react-router';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Nolan Thompson - Home" },
-    { name: "description", content: "Portfolio site for Nolan Thompson" },
+    { title: 'Nolan Thompson - Home' },
+    { name: 'description', content: 'Portfolio site for Nolan Thompson' },
   ];
 };
 
 export default function Home() {
   return (
-    <div className="space-y-10 px-4 pt-2 pb-6 relative flex h-full flex-col overflow-y-auto">
-      <h1 className="text-[69px]/[70px]">
+    <div className='space-y-10 px-4 pt-2 pb-6 relative flex h-full flex-col overflow-y-auto'>
+      <h1 className='text-[69px]/[70px]'>
         Hello!
         <br /> I'm Nolan.
       </h1>
-      <p className="px-2 text-title3 italic">
-        As a Software Engineer with over 20 years of experience in web
-        development, I bring a wealth of knowledge and a proven track record of
-        excellence to every project I undertake. Throughout my career, I have
-        honed my skills in crafting intuitive, high-performance user interfaces
-        that enhance user experience and drive business success. My deep
-        understanding of modern web technologies, combined with a passion for
-        innovation and a keen eye for detail, ensures that the web applications
-        I develop are not only visually stunning but also robust and scalable.
+      <p className='px-2 text-title3 italic'>
+        As a Software Engineer with over 20 years of experience in web development, I bring a wealth
+        of knowledge and a proven track record of excellence to every project I undertake.
+        Throughout my career, I have honed my skills in crafting intuitive, high-performance user
+        interfaces that enhance user experience and drive business success. My deep understanding of
+        modern web technologies, combined with a passion for innovation and a keen eye for detail,
+        ensures that the web applications I develop are not only visually stunning but also robust
+        and scalable.
       </p>
 
       <div>
-        <h2 className="mb-2">Work Overview</h2>
-        <p className="px-2">
-          What sets me apart goes beyond the code. Over two decades, I've grown
-          from graphic designer to staff engineer at organizations like{" "}
-          <span className="font-semibold">Walmart Global Tech</span> & the{" "}
-          <span className="font-semibold">NHL</span> — a path that's given me a
-          rare instinct for the intersection of design and engineering. I
-          specialize in building the systems behind great products: robust CI/CD
-          pipelines, maintainable JavaScript architectures, and the kind of
-          deployment infrastructure teams can actually rely on. Just as
-          important, I invest deeply in the people around me — mentoring junior
-          and mid-level engineers, leading code reviews, and fostering the
-          technical culture where great work consistently happens.
+        <h2 className='mb-2'>Work Overview</h2>
+        <p className='px-2'>
+          What sets me apart goes beyond the code. Over two decades, I've grown from graphic
+          designer to staff engineer at organizations like{' '}
+          <span className='font-semibold'>Walmart Global Tech</span> & the{' '}
+          <span className='font-semibold'>NHL</span> — a path that's given me a rare instinct for
+          the intersection of design and engineering. I specialize in building the systems behind
+          great products: robust CI/CD pipelines, maintainable JavaScript architectures, and the
+          kind of deployment infrastructure teams can actually rely on. Just as important, I invest
+          deeply in the people around me — mentoring junior and mid-level engineers, leading code
+          reviews, and fostering the technical culture where great work consistently happens.
         </p>
       </div>
 
       <div>
-        <h2 className="mb-2">Tech Debt</h2>
-        <p className="px-2 mb-6">
-          If I am not building web apps or hanging with my family, you can find
-          me doing one of these fun things!
+        <h2 className='mb-2'>Tech Debt</h2>
+        <p className='px-2 mb-6'>
+          If I am not building web apps or hanging with my family, you can find me doing one of
+          these fun things!
         </p>
-        <div className="grid lg:grid-cols-3 gap-6 px-2">
+        <div className='grid lg:grid-cols-3 gap-6 px-2'>
           <Card
             icon={Golf}
-            title="Golf"
-            copy="I have been golfing for over 30 years... Still suck, but I love it!"
+            title='Golf'
+            copy='I have been golfing for over 30 years... Still suck, but I love it!'
           />
           <Card
             icon={Bass}
-            title="Bass"
+            title='Bass'
             copy="Bass is the coolest instrument and if you don't believe me I can show 1 or 2 or 4 of them that might change your mind."
           />
           <Card
             icon={Hockey}
-            title="Hockey"
-            copy="Greatest sport in the world! I love playing and supporting such an amazing game."
+            title='Hockey'
+            copy='Greatest sport in the world! I love playing and supporting such an amazing game.'
           />
         </div>
       </div>

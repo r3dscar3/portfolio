@@ -1,34 +1,34 @@
-import { useState, type ComponentType } from "react";
+import { useState, type ComponentType } from 'react';
 
-import { motion } from "framer-motion";
-import { Bars3Icon } from "@heroicons/react/16/solid";
-import { NavLink, useNavigate } from "react-router";
+import { motion } from 'framer-motion';
+import { Bars3Icon } from '@heroicons/react/16/solid';
+import { NavLink, useNavigate } from 'react-router';
 
-import GitHub from "../icons/GitHub";
-import Glasses from "../icons/Glasses";
-import LinkedIn from "../icons/LinkedIn";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import GitHub from '../icons/GitHub';
+import Glasses from '../icons/Glasses';
+import LinkedIn from '../icons/LinkedIn';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 const routes: any = [
   {
-    slug: "",
-    name: "Home",
-    emoji: "💀",
+    slug: '',
+    name: 'Home',
+    emoji: '💀',
   },
   {
-    slug: "about",
-    name: "About",
-    emoji: "😎",
+    slug: 'about',
+    name: 'About',
+    emoji: '😎',
   },
   {
-    slug: "skills",
-    name: "Skills",
-    emoji: "👍",
+    slug: 'skills',
+    name: 'Skills',
+    emoji: '👍',
   },
   {
-    slug: "contact",
-    name: "Contact",
-    emoji: "☎️",
+    slug: 'contact',
+    name: 'Contact',
+    emoji: '☎️',
   },
 ];
 
@@ -38,60 +38,56 @@ export default function Navigation({ width }: { width: number }) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div id="nav" className="flex items-center lg:flex-col lg:h-full w-full">
+    <div id='nav' className='flex items-center lg:flex-col lg:h-full w-full'>
       <div
-        onClick={() => navigate("/")}
-        className="flex justify-center lg:w-full mr-4 lg:mr-0 mt-1 cursor-pointer text-sky-950"
+        onClick={() => navigate('/')}
+        className='flex justify-center lg:w-full mr-4 lg:mr-0 mt-1 cursor-pointer text-sky-950'
       >
-        <Glasses className="w-20 lg:w-full fill-current" />
+        <Glasses className='w-20 lg:w-full fill-current' />
       </div>
 
       <Bars3Icon
         onClick={() => setShowMenu(!showMenu)}
-        className="lg:hidden w-8 ml-auto text-sky-950"
+        className='lg:hidden w-8 ml-auto text-sky-950'
       />
 
       {(showMenu || width > 1024) && (
         <motion.div
           initial={{ opacity: 0, scale: width <= 1024 ? 0 : 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="h-full flex flex-col fixed lg:relative inset-0 w-full z-20 p-4 lg:p-0 bg-sky-700"
+          className='h-full flex flex-col fixed lg:relative inset-0 w-full z-20 p-4 lg:p-0 bg-sky-700'
         >
           <XMarkIcon
             onClick={() => setShowMenu(false)}
-            className="absolute right-3 w-8 h-8 text-sky-950 lg:hidden"
+            className='absolute right-3 w-8 h-8 text-sky-950 lg:hidden'
           />
-          <div className="flex flex-col pt-6 lg:pt-12 text-nrt-blue-150 group justify-start space-x-0 w-full">
+          <div className='flex flex-col pt-6 lg:pt-12 text-nrt-blue-150 group justify-start space-x-0 w-full'>
             {routes.map((route: any, idx: Number) => {
               if (idx !== 0) {
                 const { slug, emoji, name } = route;
 
                 return (
                   <NavLink
-                    prefetch="intent"
+                    prefetch='intent'
                     to={slug}
                     key={`${idx}`}
                     onClick={() => setShowMenu(false)}
                     className={({ isActive }) =>
                       `w-full transition-all font-normal ${
                         isActive
-                          ? "text-white hover:text-white! group-hover:text-nrt-blue-150"
-                          : "hover:text-white! group-hover:text-nrt-blue-150"
+                          ? 'text-white hover:text-white! group-hover:text-nrt-blue-150'
+                          : 'hover:text-white! group-hover:text-nrt-blue-150'
                       }`
                     }
                   >
                     {({ isActive }) => (
-                      <div className="flex items-center cursor-pointer my-1 w-full">
-                        {emoji && (
-                          <div className="inline-block text-[20px]/[20px]">
-                            {emoji}
-                          </div>
-                        )}
-                        <div className="relative h-8 ml-4 pt-2">
+                      <div className='flex items-center cursor-pointer my-1 w-full'>
+                        {emoji && <div className='inline-block text-[20px]/[20px]'>{emoji}</div>}
+                        <div className='relative h-8 ml-4 pt-2'>
                           <div>{name}</div>
                           <div
                             className={`mt-1 transition-all h-0.5 bg-sky-950 ${
-                              isActive ? "w-full" : "w-0"
+                              isActive ? 'w-full' : 'w-0'
                             }`}
                           />
                         </div>
@@ -103,29 +99,29 @@ export default function Navigation({ width }: { width: number }) {
             })}
 
             <a
-              href="/media/resume.pdf"
-              target="_blank"
-              className="w-full transition-all hover:text-white! group-hover:text-nrt-blue-150"
+              href='/media/resume.pdf'
+              target='_blank'
+              className='w-full transition-all hover:text-white! group-hover:text-nrt-blue-150'
             >
-              <div className="flex items-center cursor-pointer my-1 w-full">
-                <div className="inline-block text-[20px]/[20px]">📄</div>
-                <div className="relative h-8 ml-4 pt-2">
+              <div className='flex items-center cursor-pointer my-1 w-full'>
+                <div className='inline-block text-[20px]/[20px]'>📄</div>
+                <div className='relative h-8 ml-4 pt-2'>
                   <div>Resume</div>
                 </div>
               </div>
             </a>
           </div>
 
-          <div className="mt-auto flex items-center justify-center pb-1 text-sky-950 space-x-4">
+          <div className='mt-auto flex items-center justify-center pb-1 text-sky-950 space-x-4'>
             <ExternalLink
-              href="https://github.com/r3dscar3"
-              label="Github - r3dscar3"
-              icon={() => <GitHub className="w-6 h-6 fill-current" />}
+              href='https://github.com/r3dscar3'
+              label='Github - r3dscar3'
+              icon={() => <GitHub className='w-6 h-6 fill-current' />}
             />
             <ExternalLink
-              href="https://linkedin.com/in/nolan-panther"
-              label="LinkedIn - Nolan Thompson"
-              icon={() => <LinkedIn className="w-6 h-6 fill-current" />}
+              href='https://linkedin.com/in/nolan-panther'
+              label='LinkedIn - Nolan Thompson'
+              icon={() => <LinkedIn className='w-6 h-6 fill-current' />}
             />
           </div>
         </motion.div>
@@ -144,12 +140,7 @@ const ExternalLink = ({
   icon: ComponentType<{ className?: string }>;
 }) => {
   return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer nofollow"
-      href={href}
-      aria-label={label}
-    >
+    <a target='_blank' rel='noopener noreferrer nofollow' href={href} aria-label={label}>
       <Icon />
     </a>
   );

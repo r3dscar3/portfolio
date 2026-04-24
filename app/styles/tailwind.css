@@ -1,9 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/forms";
 
 @theme {
   /* Font family */
-  --font-kanit: "Kanit", Arial, sans-serif;
+  --font-kanit: 'Kanit', Arial, sans-serif;
 
   /* Font sizes (size / line-height) */
   --text-title1: 52px;
@@ -26,10 +26,7 @@
   --text-caption3--line-height: 14px;
 
   /* Background images */
-  --background-image-ellipse: radial-gradient(
-    ellipse at center,
-    var(--tw-gradient-stops)
-  );
+  --background-image-ellipse: radial-gradient(ellipse at center, var(--tw-gradient-stops));
   --background-image-nav: url(/public/images/nav-bg.png);
 
   /* Rotate */
@@ -50,8 +47,7 @@
   --color-nrt-blue-150: #bfe8fd;
 
   /* Drop shadow */
-  --drop-shadow-outline:
-    -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+  --drop-shadow-outline: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
 
   /* Keyframes */
   --keyframes-wiggle: {
