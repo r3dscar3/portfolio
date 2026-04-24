@@ -53,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Navigation width={width} />
 
             {/* divider */}
-            <div className='absolute h-2 w-auto lg:h-auto top-15 lg:left-49 inset-x-1.25 lg:inset-y-1.25 lg:w-2 bg-sky-950 rounded-sm corner-bevel' />
+            <div className='absolute h-2 w-auto lg:h-auto top-15 lg:left-49 inset-x-1.25 lg:inset-y-1.25 lg:w-2 bg-sky-950 rounded-sm corner-bevel z-10' />
             {/* end divider */}
           </div>
 
