@@ -1,6 +1,5 @@
-import type { MetaFunction } from "react-router";
 import PageWrapper from "~/components/PageWrapper";
-import { useLoaderData } from "react-router";
+import { useLoaderData, type MetaFunction } from "react-router";
 import { useMemo } from "react";
 
 export const meta: MetaFunction = () => {

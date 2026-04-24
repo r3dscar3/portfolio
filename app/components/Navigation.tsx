@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 
 import { motion } from "framer-motion";
 import { Bars3Icon } from "@heroicons/react/16/solid";
@@ -6,7 +6,6 @@ import { NavLink, useNavigate } from "react-router";
 
 import GitHub from "../icons/GitHub";
 import Glasses from "../icons/Glasses";
-import CodePen from "../icons/CodePen";
 import LinkedIn from "../icons/LinkedIn";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
@@ -76,8 +75,8 @@ export default function Navigation({ width }: { width: number }) {
                     className={({ isActive }) =>
                       `w-full transition-all font-semibold ${
                         isActive
-                          ? "text-white hover:!text-white group-hover:text-nrt-blue-150"
-                          : "hover:!text-white group-hover:text-nrt-blue-150"
+                          ? "text-white hover:text-white! group-hover:text-nrt-blue-150"
+                          : "hover:text-white! group-hover:text-nrt-blue-150"
                       }`
                     }
                   >
@@ -91,7 +90,7 @@ export default function Navigation({ width }: { width: number }) {
                         <div className="relative h-8 ml-4 pt-2">
                           <div>{name}</div>
                           <div
-                            className={`mt-1 transition-all h-[2px] bg-sky-950 ${
+                            className={`mt-1 transition-all h-0.5 bg-sky-950 ${
                               isActive ? "w-full" : "w-0"
                             }`}
                           />
@@ -106,7 +105,7 @@ export default function Navigation({ width }: { width: number }) {
             <a
               href="/media/resume.pdf"
               target="_blank"
-              className="w-full transition-all font-semibold hover:!text-white group-hover:text-nrt-blue-150"
+              className="w-full transition-all font-semibold hover:text-white! group-hover:text-nrt-blue-150"
             >
               <div className="flex items-center cursor-pointer my-1 w-full">
                 <div className="inline-block text-[20px]/[20px]">📄</div>
@@ -117,34 +116,41 @@ export default function Navigation({ width }: { width: number }) {
             </a>
           </div>
 
-          <div className="mt-auto flex items-center justify-around pb-1 text-sky-950 space-x-4">
-            <a
-              target="_blank"
-              rel="noopener noreferrer nofollow"
+          <div className="mt-auto flex items-center justify-center pb-1 text-sky-950 space-x-4">
+            <ExternalLink
               href="https://github.com/r3dscar3"
-              aria-label="Github - r3dscar3"
-            >
-              <GitHub className="w-6 h-6 fill-current" />
-            </a>
-            <a
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              href="https://codepen.io/r3dscar3"
-              aria-label="Codepen - r3dscar3"
-            >
-              <CodePen className="w-6 h-6 fill-current" />
-            </a>
-            <a
-              target="_blank"
-              rel="noopener noreferrer nofollow"
+              label="Github - r3dscar3"
+              icon={() => <GitHub className="w-6 h-6 fill-current" />}
+            />
+            <ExternalLink
               href="https://linkedin.com/in/nolan-panther"
-              aria-label="LinkedIn - Nolan Thompson"
-            >
-              <LinkedIn className="w-6 h-6 fill-current" />
-            </a>
+              label="LinkedIn - Nolan Thompson"
+              icon={() => <LinkedIn className="w-6 h-6 fill-current" />}
+            />
           </div>
         </motion.div>
       )}
     </div>
   );
 }
+
+const ExternalLink = ({
+  href,
+  label,
+  icon: Icon,
+}: {
+  href: string;
+  label: string;
+  icon: ComponentType<{ className?: string }>;
+}) => {
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      href={href}
+      aria-label={label}
+    >
+      <Icon />
+    </a>
+  );
+};
