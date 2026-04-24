@@ -1,7 +1,10 @@
-node_modules
-
-.vscode
-/.cache
-/build
-/public/build
+.DS_Store
 .env
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# Other
+.vscode
