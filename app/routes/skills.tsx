@@ -67,24 +67,25 @@ export default function Skills() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6 pb-6 p-2 mt-10">
-        <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md">
-          <h2 className="mb-4">Tech Skills</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            {techSkills.map((skill: string) => {
-              return <li key={skill}>{skill}</li>;
-            })}
-          </ul>
-        </div>
+        <SkillSet title="Tech Skills" skills={techSkills} />
 
-        <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md">
-          <h2 className="mb-4">Soft Skills</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            {softSkills.map((skill: string) => {
-              return <li key={skill}>{skill}</li>;
-            })}
-          </ul>
-        </div>
+        <SkillSet title="Soft Skills" skills={softSkills} />
       </div>
     </PageWrapper>
   );
 }
+
+const SkillSet = ({ title, skills }: { title: string; skills: string[] }) => {
+  return (
+    <div>
+      <h2 className="mb-4">{title}</h2>
+      <div className="bg-gray-200 p-4 rounded-md border border-gray-300 shadow-md h-full">
+        <ul className="list-disc pl-6 space-y-2">
+          {skills.map((skill: string) => {
+            return <li key={skill}>{skill}</li>;
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+};
