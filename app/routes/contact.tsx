@@ -22,7 +22,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const { data, error } = await resend.emails.send({
     from: 'NolanPanther <no-reply@nolanpanther.com>',
     to: ['nolan@nolanpanther.com'],
-    subject: "Email from NolanPanther.com",
+    subject: `Form submission from ${name} on NolanPanther.com`,
     html: `
       <div>
         <p>From: ${name}</p>
