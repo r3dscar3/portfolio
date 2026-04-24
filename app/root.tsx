@@ -29,7 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const link = document.createElement("link");
     link.href =
-      "https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200;0,300;0,600;0,800&display=swap";
+      "https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200;0,300;0,400;0,600;0,800&display=swap";
     link.rel = "stylesheet";
     link.media = "print";
     link.onload = () => {
