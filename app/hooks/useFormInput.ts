@@ -1,22 +1,19 @@
-import type { ChangeEvent } from "react";
-import { useState } from "react";
-import validation from "../utils/validation";
+import type { ChangeEvent } from 'react';
+import { useState } from 'react';
+import validation from '../utils/validation';
 
 interface UseFormInputProps {
   initialValue?: string;
   validators?: any[];
 }
 
-export default function useFormInput({
-  initialValue = "",
-  validators = [],
-}: UseFormInputProps) {
-  const [value, setValue] = useState(initialValue || "");
+export default function useFormInput({ initialValue = '', validators = [] }: UseFormInputProps) {
+  const [value, setValue] = useState(initialValue || '');
   const [touched, setTouched] = useState(false);
   const [isValid, setIsValid] = useState(
-    initialValue !== "" && initialValue !== null && !touched ? true : null,
+    initialValue !== '' && initialValue !== null && !touched ? true : null
   );
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
 
   const validateField = (value: any) => {
@@ -44,10 +41,8 @@ export default function useFormInput({
     bind: {
       value,
       onFocus: () => setTouched(true),
-      onChange: (event: ChangeEvent<HTMLInputElement>): void =>
-        setValue(event.target.value),
-      onBlur: (event: ChangeEvent<HTMLInputElement>): void =>
-        validateField(event.target.value),
+      onChange: (event: ChangeEvent<HTMLInputElement>): void => setValue(event.target.value),
+      onBlur: (event: ChangeEvent<HTMLInputElement>): void => validateField(event.target.value),
     },
     reset: () => {
       setValue(initialValue);
@@ -55,7 +50,7 @@ export default function useFormInput({
       setTouched(false);
     },
     clear: () => {
-      setValue("");
+      setValue('');
       setIsValid(true);
       setTouched(false);
     },

@@ -1,10 +1,10 @@
-import { PassThrough } from "node:stream";
+import * as isbotModule from 'isbot';
 
-import type { EntryContext } from "react-router";
-import { createReadableStreamFromReadable } from "@react-router/node";
-import { ServerRouter } from "react-router";
-import * as isbotModule from "isbot";
-import { renderToPipeableStream } from "react-dom/server";
+import type { EntryContext } from 'react-router';
+import { PassThrough } from 'node:stream';
+import { ServerRouter } from 'react-router';
+import { createReadableStreamFromReadable } from '@react-router/node';
+import { renderToPipeableStream } from 'react-dom/server';
 
 const ABORT_DELAY = 5_000;
 
@@ -15,21 +15,11 @@ export default function handleRequest(
   reactRouterContext: EntryContext
 ) {
   const prohibitOutOfOrderStreaming =
-    isBotRequest(request.headers.get("user-agent")) || reactRouterContext.isSpaMode;
+    isBotRequest(request.headers.get('user-agent')) || reactRouterContext.isSpaMode;
 
   return prohibitOutOfOrderStreaming
-    ? handleBotRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        reactRouterContext
-      )
-    : handleBrowserRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        reactRouterContext
-      );
+    ? handleBotRequest(request, responseStatusCode, responseHeaders, reactRouterContext)
+    : handleBrowserRequest(request, responseStatusCode, responseHeaders, reactRouterContext);
 }
 
 // We have some Remix apps in the wild already running with isbot@3 so we need
@@ -41,7 +31,7 @@ function isBotRequest(userAgent: string | null) {
   }
 
   // isbot >= 3.8.0, >4
-  if ("isbot" in isbotModule && typeof isbotModule.isbot === "function") {
+  if ('isbot' in isbotModule && typeof isbotModule.isbot === 'function') {
     return isbotModule.isbot(userAgent);
   }
 
@@ -57,18 +47,14 @@ function handleBotRequest(
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <ServerRouter
-        context={reactRouterContext}
-        url={request.url}
-        abortDelay={ABORT_DELAY}
-      />,
+      <ServerRouter context={reactRouterContext} url={request.url} abortDelay={ABORT_DELAY} />,
       {
         onAllReady() {
           shellRendered = true;
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
 
-          responseHeaders.set("Content-Type", "text/html");
+          responseHeaders.set('Content-Type', 'text/html');
 
           resolve(
             new Response(stream, {
@@ -107,18 +93,14 @@ function handleBrowserRequest(
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <ServerRouter
-        context={reactRouterContext}
-        url={request.url}
-        abortDelay={ABORT_DELAY}
-      />,
+      <ServerRouter context={reactRouterContext} url={request.url} abortDelay={ABORT_DELAY} />,
       {
         onShellReady() {
           shellRendered = true;
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
 
-          responseHeaders.set("Content-Type", "text/html");
+          responseHeaders.set('Content-Type', 'text/html');
 
           resolve(
             new Response(stream, {
