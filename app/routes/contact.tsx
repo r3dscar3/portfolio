@@ -97,6 +97,7 @@ export async function action({ request }: ActionFunctionArgs) {
               >
                 <tr>
                   <td
+                    width="80"
                     style="
                       padding: 4px 0;
                       font-size: 14px;
@@ -122,6 +123,7 @@ export async function action({ request }: ActionFunctionArgs) {
                   `
                 <tr>
                   <td
+                    width="80"
                     style="
                       padding: 4px 0;
                       font-size: 14px;
