@@ -4,11 +4,24 @@ import type { ActionFunctionArgs } from 'react-router';
 import FormInput from '../components/form/FormInput';
 import PageWrapper from '../components/PageWrapper';
 import { Resend } from 'resend';
+import templateHtml from '../components/emails/formSubmission.html?raw';
 import { useActionData } from 'react-router';
 import useFormInput from '../hooks/useFormInput';
 import validation from '../utils/validation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+function renderTemplate(html: string, vars: Record<string, string | null | undefined>): string {
+  html = html.replace(
+    /\{\{#if (\w+)\}\}([\s\S]*?)\{\{\/if\}\}/g,
+    (_, key: string, block: string) => {
+      return vars[key] ? block : '';
+    }
+  );
+  return Object.entries(vars).reduce((acc, [key, value]) => {
+    return acc.replaceAll(`{{${key}}}`, value ?? '');
+  }, html);
+}
 
 export function meta() {
   return [{ title: 'Nolan Thompson - Contact' }, { name: 'description', content: 'Contact me' }];
@@ -16,193 +29,18 @@ export function meta() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const {
-    email = '',
-    phone = '',
-    name = '',
-    body = '',
-  } = Object.fromEntries(formData) as Record<string, string>;
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string | null;
+  const phone = formData.get('phone') as string | null;
+  const body = formData.get('body') as string;
+
+  const html = renderTemplate(templateHtml, { name, email, phone, body });
 
   const { data, error } = await resend.emails.send({
     from: 'NolanPanther <no-reply@nolanpanther.com>',
     to: ['nolan@nolanpanther.com'],
     subject: `Form submission from ${name} on NolanPanther.com`,
-    html: `
-      <div
-        style="
-          background-color: #f0f0f0;
-          padding: 32px 16px;
-          width: 100%;
-          box-sizing: border-box;
-        "
-      >
-        <table
-          role="presentation"
-          cellpadding="0"
-          cellspacing="0"
-          style="max-width: 600px; margin: 0 auto; width: 100%"
-        >
-          <tr>
-            <td
-              style="
-                background-color: #ffffff;
-                border-radius: 12px;
-                padding: 32px;
-                font-family: Arial, sans-serif;
-              "
-            >
-              <!-- Logo -->
-              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="center" style="padding-bottom: 24px">
-                    <img
-                      src="https://nolanpanther.com/media/glasses.png"
-                      alt="Nolan Panther Logo"
-                      width="150"
-                      style="display: block; width: 150px; height: auto"
-                    />
-                  </td>
-                </tr>
-              </table>
-
-              <!-- Title -->
-              <h1
-                style="
-                  margin: 0 0 24px 0;
-                  font-size: 24px;
-                  font-weight: bold;
-                  text-align: center;
-                  color: #111111;
-                "
-              >
-                Form Submission
-              </h1>
-
-              <!-- Divider -->
-              <hr
-                style="
-                  border: none;
-                  border-top: 1px solid #e0e0e0;
-                  margin: 0 0 24px 0;
-                "
-              />
-
-              <!-- Sender Info -->
-              <table
-                role="presentation"
-                cellpadding="0"
-                cellspacing="0"
-                width="100%"
-                style="margin-bottom: 24px"
-              >
-                <tr>
-                  <td
-                    width="80"
-                    style="
-                      padding: 4px 0;
-                      font-size: 14px;
-                      color: #555555;
-                      font-family: Arial, sans-serif;
-                    "
-                  >
-                    <strong style="color: #111111">Name</strong>
-                  </td>
-                  <td
-                    style="
-                      padding: 4px 0;
-                      font-size: 14px;
-                      color: #333333;
-                      font-family: Arial, sans-serif;
-                    "
-                  >
-                    ${name}
-                  </td>
-                </tr>
-                ${
-                  email &&
-                  `
-                <tr>
-                  <td
-                    width="80"
-                    style="
-                      padding: 4px 0;
-                      font-size: 14px;
-                      color: #555555;
-                      font-family: Arial, sans-serif;
-                    "
-                  >
-                    <strong style="color: #111111">Email</strong>
-                  </td>
-                  <td
-                    style="
-                      padding: 4px 0;
-                      font-size: 14px;
-                      font-family: Arial, sans-serif;
-                    "
-                  >
-                    <a
-                      href="mailto:${email}"
-                      style="color: #0066cc; text-decoration: none"
-                      >${email}</a
-                    >
-                  </td>
-                </tr>
-                `
-                } ${
-                  phone &&
-                  `
-                <tr>
-                  <td
-                    style="
-                      padding: 4px 0;
-                      font-size: 14px;
-                      color: #555555;
-                      font-family: Arial, sans-serif;
-                    "
-                  >
-                    <strong style="color: #111111">Phone</strong>
-                  </td>
-                  <td
-                    style="
-                      padding: 4px 0;
-                      font-size: 14px;
-                      color: #333333;
-                      font-family: Arial, sans-serif;
-                    "
-                  >
-                    ${phone}
-                  </td>
-                </tr>
-                `
-                }
-              </table>
-
-              <!-- Divider -->
-              <hr
-                style="
-                  border: none;
-                  border-top: 1px solid #e0e0e0;
-                  margin: 0 0 24px 0;
-                "
-              />
-
-              <!-- Message Body -->
-              <p
-                style="
-                  margin: 0;
-                  font-size: 15px;
-                  line-height: 1.7;
-                  color: #333333;
-                  font-family: Arial, sans-serif;
-                "
-              >
-                ${body}
-              </p>
-            </td>
-          </tr>
-        </table>
-      </div>
-    `,
+    html,
   });
 
   return { formData: data, error };
