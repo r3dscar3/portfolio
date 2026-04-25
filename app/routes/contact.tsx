@@ -87,7 +87,11 @@ function isContactValid({
   email: { isEmpty: boolean; isValid: boolean | null };
   phone: { isEmpty: boolean; isValid: boolean | null };
 }) {
-  return (!email.isEmpty || !phone.isEmpty) && email.isValid && phone.isValid;
+  const atLeastOneFilled = !email.isEmpty || !phone.isEmpty;
+  const emailOk = email.isEmpty || email.isValid === true;
+  const phoneOk = phone.isEmpty || phone.isValid === true;
+
+  return atLeastOneFilled && emailOk && phoneOk;
 }
 
 function cantSend({
@@ -99,9 +103,9 @@ function cantSend({
   name: { isEmpty: boolean };
   email: { isEmpty: boolean; isValid: boolean | null };
   phone: { isEmpty: boolean; isValid: boolean | null };
-  body: { length: number };
+  body: string;
 }) {
-  return !isContactValid({ email, phone }) || name.isEmpty || body.length === 0;
+  return !isContactValid({ email, phone }) || name.isEmpty || body.trim() === '';
 }
 
 export default function Contact() {
