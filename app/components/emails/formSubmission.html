@@ -73,10 +73,10 @@
                 font-family: 'Courier New', Courier, monospace;
               "
             >
-              ${name}
+              {{name}}
             </td>
           </tr>
-          ${email && `
+          {{email && `
           <tr>
             <td
               width="80"
@@ -96,10 +96,10 @@
                 font-family: 'Courier New', Courier, monospace;
               "
             >
-              <a href="mailto:${email}" style="color: #0066cc; text-decoration: none">${email}</a>
+              <a href="mailto:${email}" style="color: #0066cc; text-decoration: none">{{email}}</a>
             </td>
           </tr>
-          `} ${phone && `
+          `}} {{phone && `
           <tr>
             <td
               width="80"
@@ -120,10 +120,10 @@
                 font-family: 'Courier New', Courier, monospace;
               "
             >
-              ${phone}
+              {{phone}}
             </td>
           </tr>
-          `}
+          `}}
         </table>
 
         <!-- Divider -->
@@ -139,7 +139,7 @@
             font-family: 'Courier New', Courier, monospace;
           "
         >
-          ${body}
+          {{body}}
         </p>
       </td>
     </tr>
