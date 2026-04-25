@@ -76,7 +76,9 @@
               {{name}}
             </td>
           </tr>
-          {{email && `
+
+          <!-- If email -->
+          {{#if email}}
           <tr>
             <td
               width="80"
@@ -99,7 +101,10 @@
               <a href="mailto:${email}" style="color: #0066cc; text-decoration: none">{{email}}</a>
             </td>
           </tr>
-          `}} {{phone && `
+          {{/if}}
+
+          <!--If phone-->
+          {{#if phone}}
           <tr>
             <td
               width="80"
@@ -123,7 +128,7 @@
               {{phone}}
             </td>
           </tr>
-          `}}
+          {{/if}}
         </table>
 
         <!-- Divider -->
