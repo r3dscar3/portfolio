@@ -28,13 +28,16 @@ export async function action({ request }: ActionFunctionArgs) {
     to: ['nolan@nolanpanther.com'],
     subject: `Form submission from ${name} on NolanPanther.com`,
     html: `
-      <div>
-        <p>From: ${name}</p>
-        <p>${email}</p>
-        <p>${phone}</p>
+      <div style="font-family: Arial, sans-serif; line-height: 1.5; flex-direction: column; flex-items: center; gap: 12px; padding: 16px; background-color: #f9f9f9; border-radius: 8px;">
+        <img src="https://nolanpanther.com/media/glasses.png" alt="Nolan Panther Logo" style="width: 150px; height: auto; margin-bottom: 16px;" />
+        <h1>Form submission</h1>
+        <div> style="width: 100%; text-align: left; font-size: 16px; font-weight: bold; margin-bottom: 8px;">
+          <p>From: ${name}</p>
+          <p>${email}</p>
+          <p>${phone}</p>
+        </div>
         
-        <h1>Form submission from NolanPanther.com</h1>
-        <p style="padding: 4px 0">${body}</p>
+        <p style="padding: 4px 0; font-size: 16px; width: 100%; text-align: left;">${body}</p>
       </div>
     `,
   });
