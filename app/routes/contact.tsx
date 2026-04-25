@@ -52,8 +52,9 @@ export async function action({ request }: ActionFunctionArgs) {
               transform: translateX(-50%);
             "
           />
-          <h1 style="text-align: center; width: 100%;">Form submission</h1>
-          <div
+          <h1 style="text-align: center; width: 100%">Form submission</h1>
+
+          <p
             style="
               width: 100%;
               text-align: left;
@@ -62,12 +63,9 @@ export async function action({ request }: ActionFunctionArgs) {
               margin-bottom: 8px;
             "
           >
-            <p>
-              From: ${name}<br />
-              ${email}<br />
-              ${phone}
-            </p>
-          </div>
+            From: ${name}<br />
+            ${email && `Email: ${email}<br />`} ${phone && `Phone: ${phone}`}
+          </p>
 
           <p style="padding: 4px 0; font-size: 18px; width: 100%; text-align: left">
             ${body}
