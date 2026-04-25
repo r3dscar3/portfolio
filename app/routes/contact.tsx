@@ -4,24 +4,13 @@ import type { ActionFunctionArgs } from 'react-router';
 import FormInput from '../components/form/FormInput';
 import PageWrapper from '../components/PageWrapper';
 import { Resend } from 'resend';
-import templateHtml from '../components/emails/formSubmission.html?raw';
+import formSubmissionHtml from '../components/emails/formSubmission.html?raw';
+import { renderHTMLTemplate } from '../utils';
 import { useActionData } from 'react-router';
 import useFormInput from '../hooks/useFormInput';
 import validation from '../utils/validation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-function renderTemplate(html: string, vars: Record<string, string | null | undefined>): string {
-  html = html.replace(
-    /\{\{#if (\w+)\}\}([\s\S]*?)\{\{\/if\}\}/g,
-    (_, key: string, block: string) => {
-      return vars[key] ? block : '';
-    }
-  );
-  return Object.entries(vars).reduce((acc, [key, value]) => {
-    return acc.replaceAll(`{{${key}}}`, value ?? '');
-  }, html);
-}
 
 export function meta() {
   return [{ title: 'Nolan Thompson - Contact' }, { name: 'description', content: 'Contact me' }];
@@ -34,7 +23,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const phone = formData.get('phone') as string | null;
   const body = formData.get('body') as string;
 
-  const html = renderTemplate(templateHtml, { name, email, phone, body });
+  const html = renderHTMLTemplate(formSubmissionHtml, { name, email, phone, body });
 
   const { data, error } = await resend.emails.send({
     from: 'NolanPanther <no-reply@nolanpanther.com>',
