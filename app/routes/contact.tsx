@@ -40,7 +40,7 @@ export async function action({ request }: ActionFunctionArgs) {
     from: 'NolanPanther <no-reply@nolanpanther.com>',
     to: ['nolan@nolanpanther.com'],
     subject: `Form submission from ${name} on NolanPanther.com`,
-    html,
+    html: `${html}`,
   });
 
   return { formData: data, error };
