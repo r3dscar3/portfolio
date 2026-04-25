@@ -28,49 +28,177 @@ export async function action({ request }: ActionFunctionArgs) {
     to: ['nolan@nolanpanther.com'],
     subject: `Form submission from ${name} on NolanPanther.com`,
     html: `
-      <div style="padding: 16px; width: 100%">
-        <div
-          style="
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-            padding: 16px;
-            background-color: #f6f6f6;
-            border-radius: 12px;
-            width: 100%;
-          "
+      <div
+        style="
+          background-color: #f0f0f0;
+          padding: 32px 16px;
+          width: 100%;
+          box-sizing: border-box;
+        "
+      >
+        <table
+          role="presentation"
+          cellpadding="0"
+          cellspacing="0"
+          style="max-width: 600px; margin: 0 auto; width: 100%"
         >
-          <img
-            src="https://nolanpanther.com/media/glasses.png"
-            alt="Nolan Panther Logo"
-            style="
-              width: 150px;
-              height: auto;
-              margin-bottom: 16px;
-              display: block;
-              position: relative;
-              left: 50%;
-              transform: translateX(-50%);
-            "
-          />
-          <h1 style="text-align: center; width: 100%">Form submission</h1>
+          <tr>
+            <td
+              style="
+                background-color: #ffffff;
+                border-radius: 12px;
+                padding: 32px;
+                font-family: Arial, sans-serif;
+              "
+            >
+              <!-- Logo -->
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" style="padding-bottom: 24px">
+                    <img
+                      src="https://nolanpanther.com/media/glasses.png"
+                      alt="Nolan Panther Logo"
+                      width="150"
+                      style="display: block; width: 150px; height: auto"
+                    />
+                  </td>
+                </tr>
+              </table>
 
-          <p
-            style="
-              width: 100%;
-              text-align: left;
-              font-size: 16px;
-              font-weight: bold;
-              margin-bottom: 8px;
-            "
-          >
-            From: ${name}<br />
-            ${email && `Email: ${email}<br />`} ${phone && `Phone: ${phone}`}
-          </p>
+              <!-- Title -->
+              <h1
+                style="
+                  margin: 0 0 24px 0;
+                  font-size: 24px;
+                  font-weight: bold;
+                  text-align: center;
+                  color: #111111;
+                "
+              >
+                Form Submission
+              </h1>
 
-          <p style="padding: 4px 0; font-size: 18px; width: 100%; text-align: left">
-            ${body}
-          </p>
-        </div>
+              <!-- Divider -->
+              <hr
+                style="
+                  border: none;
+                  border-top: 1px solid #e0e0e0;
+                  margin: 0 0 24px 0;
+                "
+              />
+
+              <!-- Sender Info -->
+              <table
+                role="presentation"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+                style="margin-bottom: 24px"
+              >
+                <tr>
+                  <td
+                    style="
+                      padding: 4px 0;
+                      font-size: 14px;
+                      color: #555555;
+                      font-family: Arial, sans-serif;
+                    "
+                  >
+                    <strong style="color: #111111">Name</strong>
+                  </td>
+                  <td
+                    style="
+                      padding: 4px 0;
+                      font-size: 14px;
+                      color: #333333;
+                      font-family: Arial, sans-serif;
+                    "
+                  >
+                    ${name}
+                  </td>
+                </tr>
+                ${
+                  email &&
+                  `
+                <tr>
+                  <td
+                    style="
+                      padding: 4px 0;
+                      font-size: 14px;
+                      color: #555555;
+                      font-family: Arial, sans-serif;
+                    "
+                  >
+                    <strong style="color: #111111">Email</strong>
+                  </td>
+                  <td
+                    style="
+                      padding: 4px 0;
+                      font-size: 14px;
+                      font-family: Arial, sans-serif;
+                    "
+                  >
+                    <a
+                      href="mailto:${email}"
+                      style="color: #0066cc; text-decoration: none"
+                      >${email}</a
+                    >
+                  </td>
+                </tr>
+                `
+                } ${
+                  phone &&
+                  `
+                <tr>
+                  <td
+                    style="
+                      padding: 4px 0;
+                      font-size: 14px;
+                      color: #555555;
+                      font-family: Arial, sans-serif;
+                    "
+                  >
+                    <strong style="color: #111111">Phone</strong>
+                  </td>
+                  <td
+                    style="
+                      padding: 4px 0;
+                      font-size: 14px;
+                      color: #333333;
+                      font-family: Arial, sans-serif;
+                    "
+                  >
+                    ${phone}
+                  </td>
+                </tr>
+                `
+                }
+              </table>
+
+              <!-- Divider -->
+              <hr
+                style="
+                  border: none;
+                  border-top: 1px solid #e0e0e0;
+                  margin: 0 0 24px 0;
+                "
+              />
+
+              <!-- Message Body -->
+              <p
+                style="
+                  margin: 0;
+                  font-size: 15px;
+                  line-height: 1.7;
+                  color: #333333;
+                  font-family: Arial, sans-serif;
+                "
+              >
+                ${body}
+              </p>
+            </td>
+          </tr>
+        </table>
       </div>
     `,
   });
