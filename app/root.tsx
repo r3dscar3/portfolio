@@ -8,13 +8,12 @@ import Navigation from './components/Navigation';
 import useResizeObserver from './hooks/useResizeObserver';
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const [observeResize, dimensions]: any = useResizeObserver();
+  const [dimensions, observeResize] = useResizeObserver();
 
-  const wrapperRef = useCallback((node: any) => {
+  const wrapperRef = useCallback((node: HTMLElement | null) => {
     if (node !== null) {
       observeResize(node);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { width } = dimensions;

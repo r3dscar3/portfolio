@@ -2,9 +2,8 @@ import Bass from '../icons/Bass';
 import Card from '../components/Card';
 import Golf from '../icons/Golf';
 import Hockey from '../icons/Hockey';
-import type { Route } from './+types/_index';
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: 'Nolan Thompson - Home' },
     { name: 'description', content: 'Portfolio site for Nolan Thompson' },

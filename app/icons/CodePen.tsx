@@ -1,4 +1,4 @@
-const CodePen = ({ ...props }: any) => {
+const CodePen: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg viewBox='0 0 48 48' {...props}>
       <path

@@ -1,4 +1,4 @@
-const Glasses = ({ ...props }: any) => {
+const Glasses: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg viewBox='0 0 867.96 303.51' {...props}>
       <path

@@ -1,68 +1,58 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-const useResizeObserver = () => {
-  const [current, setCurrent] = useState();
+type Dimensions = { width: number; height: number; x: number; y: number };
+type ObserveResize = (element: HTMLElement | null) => void;
 
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
+const useResizeObserver = (): [Dimensions, ObserveResize] => {
+  const [current, setCurrent] = useState<HTMLElement | null>(null);
+  const [dimensions, setDimensions] = useState<Dimensions>({ width: 0, height: 0, x: 0, y: 0 });
+  const observer = useRef<ResizeObserver | null>(null);
+  const isResizing = useRef(false);
+  const prevDimensions = useRef<Dimensions>({ width: 0, height: 0, x: 0, y: 0 });
 
-  const observer: any = useRef(null);
-  let resizing = false;
+  const handleResize = useCallback((entries: ResizeObserverEntry[]) => {
+    window.requestAnimationFrame(() => {
+      if (isResizing.current) return;
+      isResizing.current = true;
+
+      const target = entries[0].target;
+      const { x, y } = target.getBoundingClientRect();
+      const newDimensions: Dimensions = {
+        width: target.clientWidth,
+        height: target.clientHeight,
+        x,
+        y,
+      };
+
+      const prev = prevDimensions.current;
+      if (newDimensions.width !== prev.width || newDimensions.height !== prev.height) {
+        prevDimensions.current = newDimensions;
+        setDimensions(newDimensions);
+      }
+
+      isResizing.current = false;
+    });
+  }, []);
 
   useEffect(() => {
-    // if we are already observing old element
-    if (shouldUnobserve()) {
-      observer.current.unobserve(current);
-    }
-
     if (!observer.current) {
       observer.current = new ResizeObserver(handleResize);
     }
-
     if (current) {
       observer.current.observe(current);
     }
-
     return () => {
-      if (shouldUnobserve()) {
+      if (observer.current && current) {
         observer.current.unobserve(current);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
+  }, [current, handleResize]);
 
-  function handleResize(entries: any) {
-    window.requestAnimationFrame(() => {
-      if (resizing) {
-        return;
-      }
+  const observeResize = useCallback((element: HTMLElement | null) => {
+    setCurrent(element);
+  }, []);
 
-      resizing = true;
-
-      const target = entries[0].target;
-      const newWidth = target.clientWidth;
-      const newHeight = target.clientHeight;
-      const newX = target.getBoundingClientRect().x;
-      const newY = target.getBoundingClientRect().y;
-
-      if (newWidth !== dimensions.width || newHeight !== dimensions.height) {
-        setDimensions({ width: newWidth, height: newHeight, x: newX, y: newY });
-      }
-
-      resizing = false;
-    });
-  }
-
-  function shouldUnobserve() {
-    return observer && observer.current && current;
-  }
-
-  const observeResize = (element: any) => {
-    if (element) {
-      setCurrent(element);
-    }
-  };
-
-  return [observeResize, dimensions];
+  return [dimensions, observeResize];
 };
 
 export default useResizeObserver;

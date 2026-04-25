@@ -9,7 +9,7 @@ import Glasses from '../icons/Glasses';
 import LinkedIn from '../icons/LinkedIn';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 
-const routes: any = [
+const routes: { slug: string; name: string; emoji: string }[] = [
   {
     slug: '',
     name: 'Home',
@@ -62,7 +62,7 @@ export default function Navigation({ width }: { width: number }) {
             className='absolute right-3 w-8 h-8 text-sky-950 lg:hidden'
           />
           <div className='flex flex-col pt-6 lg:pt-12 text-nrt-blue-150 group justify-start space-x-0 w-full'>
-            {routes.map((route: any, idx: Number) => {
+            {routes.map((route: { slug: string; emoji: string; name: string }, idx: number) => {
               if (idx !== 0) {
                 const { slug, emoji, name } = route;
 

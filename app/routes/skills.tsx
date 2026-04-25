@@ -1,14 +1,13 @@
 import PageWrapper from '../components/PageWrapper';
-import type { Route } from './+types/skills';
 import { useLoaderData } from 'react-router';
 import { useMemo } from 'react';
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [{ title: 'Nolan Thompson - Skills' }, { name: 'description', content: 'My skills' }];
 }
 
 export function loader() {
-  const softSkills: any = [
+  const softSkills: string[] = [
     'Active Listening',
     'Verbal Communication',
     'Collaboration',
@@ -25,7 +24,7 @@ export function loader() {
     'Dependability',
     'Stakeholder Management',
   ];
-  const techSkills: any = [
+  const techSkills: string[] = [
     'Deep expertise in system design, architecture, and scalable solutions.',
     'Proficiency in modern tools, languages, and frameworks (e.g., React, Vite, etc.).',
     'Ability to troubleshoot complex technical issues and introduce innovative solutions.',

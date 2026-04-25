@@ -4,20 +4,24 @@ import type { ActionFunctionArgs } from 'react-router';
 import FormInput from '../components/form/FormInput';
 import PageWrapper from '../components/PageWrapper';
 import { Resend } from 'resend';
-import type { Route } from './+types/contact';
 import { useActionData } from 'react-router';
 import useFormInput from '../hooks/useFormInput';
 import validation from '../utils/validation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [{ title: 'Nolan Thompson - Contact' }, { name: 'description', content: 'Contact me' }];
 }
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const { email, phone, name, body }: any = Object.fromEntries(formData);
+  const {
+    email = '',
+    phone = '',
+    name = '',
+    body = '',
+  } = Object.fromEntries(formData) as Record<string, string>;
 
   const { data, error } = await resend.emails.send({
     from: 'NolanPanther <no-reply@nolanpanther.com>',
@@ -38,17 +42,36 @@ export async function action({ request }: ActionFunctionArgs) {
   return { formData: data, error };
 }
 
-function isContactValid({ email, phone }: any) {
+function isContactValid({
+  email,
+  phone,
+}: {
+  email: { isEmpty: boolean; isValid: boolean | null };
+  phone: { isEmpty: boolean; isValid: boolean | null };
+}) {
   return (!email.isEmpty || !phone.isEmpty) && email.isValid && phone.isValid;
 }
 
-function cantSend({ name, email, phone, body }: any) {
+function cantSend({
+  name,
+  email,
+  phone,
+  body,
+}: {
+  name: { isEmpty: boolean };
+  email: { isEmpty: boolean; isValid: boolean | null };
+  phone: { isEmpty: boolean; isValid: boolean | null };
+  body: { length: number };
+}) {
   return !isContactValid({ email, phone }) || name.isEmpty || body.length === 0;
 }
 
 export default function Contact() {
   const actionData = useActionData<typeof action>();
-  const { formData, error }: any = useMemo(() => actionData || {}, []);
+  const { formData, error } = useMemo(
+    () => actionData || { formData: undefined, error: undefined },
+    []
+  );
 
   const [bodyValue, setBodyValue] = useState('');
 
@@ -147,7 +170,9 @@ export default function Contact() {
 
                 <textarea
                   value={bodyValue}
-                  onChange={(e: any) => setBodyValue(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setBodyValue(e.target.value)
+                  }
                   placeholder="What's up?"
                   name='body'
                   rows={12}

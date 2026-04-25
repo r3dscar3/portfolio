@@ -1,9 +1,8 @@
 import PageWrapper from '../components/PageWrapper';
-import type { Route } from './+types/about';
 import { useLoaderData } from 'react-router';
 import { useMemo } from 'react';
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [{ title: 'Nolan Thompson - About' }, { name: 'description', content: 'About me' }];
 }
 

@@ -1,7 +1,7 @@
 import type { FC, SVGProps } from 'react';
 
 interface CardProps {
-  icon: FC<SVGProps<SVGElement>>;
+  icon: FC<SVGProps<SVGSVGElement>>;
   title: string;
   copy: string;
 }

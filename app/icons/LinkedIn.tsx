@@ -1,4 +1,4 @@
-const LinkedIn = ({ ...props }: any) => {
+const LinkedIn: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg viewBox='0 0 48 48' {...props}>
       <path
