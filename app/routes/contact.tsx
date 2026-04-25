@@ -28,25 +28,31 @@ export async function action({ request }: ActionFunctionArgs) {
     to: ['nolan@nolanpanther.com'],
     subject: `Form submission from ${name} on NolanPanther.com`,
     html: `
-      <div style="padding: 20px;">
+      <div style="padding: 16px; width: 100%">
         <div
           style="
             font-family: Arial, sans-serif;
             line-height: 1.5;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
             padding: 16px;
             background-color: #f6f6f6;
-            border-radius: 8px;
+            border-radius: 12px;
+            width: 100%;
           "
         >
           <img
             src="https://nolanpanther.com/media/glasses.png"
             alt="Nolan Panther Logo"
-            style="width: 150px; height: auto; margin-bottom: 16px"
+            style="
+              width: 150px;
+              height: auto;
+              margin-bottom: 16px;
+              display: block;
+              position: relative;
+              left: 50%;
+              transform: translateX(-50%);
+            "
           />
-          <h1>Form submission</h1>
+          <h1 style="text-align: center; width: 100%;">Form submission</h1>
           <div
             style="
               width: 100%;
@@ -56,12 +62,14 @@ export async function action({ request }: ActionFunctionArgs) {
               margin-bottom: 8px;
             "
           >
-            <p>From: ${name}</p>
-            <p>${email}</p>
-            <p>${phone}</p>
+            <p>
+              From: ${name}<br />
+              ${email}<br />
+              ${phone}
+            </p>
           </div>
 
-          <p style="padding: 4px 0; font-size: 16px; width: 100%; text-align: left">
+          <p style="padding: 4px 0; font-size: 18px; width: 100%; text-align: left">
             ${body}
           </p>
         </div>
