@@ -1,33 +1,38 @@
-import type { ChangeEvent, InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 
 import Input from './Input';
+import TextArea from './TextArea';
 
-interface FormInputBind extends InputHTMLAttributes<HTMLInputElement> {
-  value: string;
-  onFocus: () => void;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (event: ChangeEvent<HTMLInputElement>) => void;
-  'data-1p-ignore'?: boolean;
-}
+type DataAttributes = { 'data-1p-ignore'?: boolean };
+
+type FormInputBind =
+  | (Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & {
+      value?: string;
+    } & DataAttributes)
+  | (Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> & {
+      value?: string;
+    } & DataAttributes);
 
 interface FormInputProps {
-  value: string;
-  touched: boolean;
-  isValid: boolean | null;
-  isEmpty: boolean;
-  errorMessage: string;
   bind: FormInputBind;
-  reset: () => void;
-  clear: () => void;
+  errorMessage?: string;
 }
 
-export default function FormInput({ inputProps }: { inputProps: FormInputProps }) {
+export default function FormInput({
+  inputProps,
+  rows,
+}: {
+  inputProps: FormInputProps;
+  rows?: number;
+}) {
+  const { bind, errorMessage } = inputProps;
+
   return (
     <div className='relative w-full'>
-      <Input {...inputProps.bind} />
-      {inputProps.errorMessage && (
+      {rows !== undefined ? <TextArea {...bind} rows={rows} /> : <Input {...bind} />}
+      {errorMessage && (
         <div className='absolute top-full left-0 text-caption3 text-red-600 px-2 py-0.5'>
-          {inputProps.errorMessage}
+          {errorMessage}
         </div>
       )}
     </div>

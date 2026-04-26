@@ -1,5 +1,3 @@
-import { useMemo, useState } from 'react';
-
 import type { ActionFunctionArgs } from 'react-router';
 import FormInput from '../components/form/FormInput';
 import PageWrapper from '../components/PageWrapper';
@@ -8,6 +6,7 @@ import formSubmissionHtml from '../components/emails/formSubmission.html?raw';
 import { renderHTMLTemplate } from '../utils';
 import { useActionData } from 'react-router';
 import useFormInput from '../hooks/useFormInput';
+import { useMemo } from 'react';
 import validation from '../utils/validation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -58,9 +57,9 @@ function cantSend({
   name: { isEmpty: boolean };
   email: { isEmpty: boolean; isValid: boolean | null };
   phone: { isEmpty: boolean; isValid: boolean | null };
-  body: string;
+  body: { isEmpty: boolean; value: string };
 }) {
-  return !isContactValid({ email, phone }) || name.isEmpty || body.trim() === '';
+  return !isContactValid({ email, phone }) || name.isEmpty || body.isEmpty;
 }
 
 export default function Contact() {
@@ -69,8 +68,6 @@ export default function Contact() {
     () => actionData || { formData: undefined, error: undefined },
     []
   );
-
-  const [bodyValue, setBodyValue] = useState('');
 
   const nameInput = useFormInput({
     initialValue: '',
@@ -85,6 +82,11 @@ export default function Contact() {
   const phoneInput = useFormInput({
     initialValue: '',
     validators: [validation.isPhone({ message: 'Please enter a valid phone number' })],
+  });
+
+  const bodyInput = useFormInput({
+    initialValue: '',
+    validators: [validation.isRequired({ message: 'Please enter a message' })],
   });
 
   return (
@@ -165,15 +167,17 @@ export default function Contact() {
                   />
                 </div>
 
-                <textarea
-                  value={bodyValue}
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                    setBodyValue(e.target.value)
-                  }
-                  placeholder="What's up?"
-                  name='body'
+                <FormInput
+                  inputProps={{
+                    ...bodyInput,
+                    bind: {
+                      ...bodyInput.bind,
+                      name: 'body',
+                      placeholder: "What's up?",
+                      'data-1p-ignore': true,
+                    },
+                  }}
                   rows={12}
-                  className='block w-full rounded-md text-footnote placeholder-gray-400 border-gray-300'
                 />
 
                 <div className='flex w-full justify-end'>
@@ -182,7 +186,7 @@ export default function Contact() {
                       name: nameInput,
                       email: emailInput,
                       phone: phoneInput,
-                      body: bodyValue,
+                      body: bodyInput,
                     })}
                     type='submit'
                     className='bg-sky-600 px-6 py-2 rounded-md border border-sky-800 text-white hover:bg-sky-700 transition-colors disabled:cursor-not-allowed disabled:bg-gray-300 disabled:border-gray-300'
