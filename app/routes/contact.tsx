@@ -17,6 +17,11 @@ export function meta() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
+
+  if (!formData) {
+    return { formData: undefined, error: new Error('No form data') };
+  }
+
   const name = formData.get('name') as string;
   const email = formData.get('email') as string | null;
   const phone = formData.get('phone') as string | null;
