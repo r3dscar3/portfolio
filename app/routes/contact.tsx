@@ -7,7 +7,16 @@ import { renderHTMLTemplate } from '../utils';
 import { useActionData } from 'react-router';
 import useFormInput from '../hooks/useFormInput';
 import { useMemo } from 'react';
-import validation from '../utils/validation';
+import { z } from 'zod';
+
+const ContactFormSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.email('Invalid email address').nullable().optional(),
+  phone: z.string().min(10, 'Invalid phone number').nullable().optional(),
+  body: z.string().min(1, 'Message is required'),
+});
+
+type ContactFormData = z.infer<typeof ContactFormSchema>;
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -18,39 +27,74 @@ export function meta() {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
 
+  // Error type 1: No form data
   if (!formData) {
-    return { formData: undefined, error: new Error('No form data') };
+    return {
+      formData: undefined,
+      error: { type: 'form' as const, message: 'No form data' },
+    };
   }
 
-  const name = formData.get('name') as string;
-  const email = formData.get('email') as string | null;
-  const phone = formData.get('phone') as string | null;
-  const body = formData.get('body') as string;
+  const formDataObj = {
+    name: formData.get('name') as string,
+    email: (formData.get('email') as string | null) || null,
+    phone: (formData.get('phone') as string | null) || null,
+    body: formData.get('body') as string,
+  };
 
-  const html = renderHTMLTemplate(formSubmissionHtml, { name, email, phone, body });
+  // Error type 2: Validation
+  const result = ContactFormSchema.safeParse(formDataObj);
+
+  if (!result.success) {
+    return {
+      formData: formDataObj,
+      success: false,
+      error: { type: 'validation' as const, fields: z.treeifyError(result.error) },
+    };
+  }
+
+  const { name, email, phone, body } = result.data;
+  const html = renderHTMLTemplate(formSubmissionHtml, {
+    name,
+    email,
+    phone,
+    body,
+  } satisfies ContactFormData);
 
   const { data, error } = await resend.emails.send({
-    from: 'NolanPanther <no-reply@nolanpanther.com>',
+    from: 'The Website <no-reply@nolanpanther.com>',
     to: ['nolan@nolanpanther.com'],
     subject: `Form submission from ${name} on NolanPanther.com`,
     html,
   });
 
-  return { formData: data, error };
+  // Error type 3: Send failure
+  if (error) {
+    return {
+      formData: null,
+      error: {
+        type: 'send' as const,
+        message:
+          error.message || 'An error occurred while sending your message. Please try again later.',
+      },
+    };
+  }
+
+  return { formData: result.data, success: data, error: null };
 }
 
 function isContactValid({
   email,
   phone,
 }: {
-  email: { isEmpty: boolean; isValid: boolean | null };
-  phone: { isEmpty: boolean; isValid: boolean | null };
+  email: { isEmpty: boolean };
+  phone: { isEmpty: boolean };
 }) {
   const atLeastOneFilled = !email.isEmpty || !phone.isEmpty;
-  const emailOk = email.isEmpty || email.isValid === true;
-  const phoneOk = phone.isEmpty || phone.isValid === true;
+  const emailOk = !email.isEmpty;
+  const phoneOk = !phone.isEmpty;
 
-  return atLeastOneFilled && emailOk && phoneOk;
+  return atLeastOneFilled && (emailOk || phoneOk);
 }
 
 function cantSend({
@@ -60,8 +104,8 @@ function cantSend({
   body,
 }: {
   name: { isEmpty: boolean };
-  email: { isEmpty: boolean; isValid: boolean | null };
-  phone: { isEmpty: boolean; isValid: boolean | null };
+  email: { isEmpty: boolean };
+  phone: { isEmpty: boolean };
   body: { isEmpty: boolean; value: string };
 }) {
   return !isContactValid({ email, phone }) || name.isEmpty || body.isEmpty;
@@ -69,29 +113,33 @@ function cantSend({
 
 export default function Contact() {
   const actionData = useActionData<typeof action>();
-  const { formData, error } = useMemo(
-    () => actionData || { formData: undefined, error: undefined },
+  const { formData, success, error } = useMemo(
+    () => actionData || { formData: undefined, success: undefined, error: undefined },
     []
   );
 
+  const { name, email, phone, body } = formData || {};
+
+  const { properties = {} } = error?.type === 'validation' ? error.fields : { properties: {} };
+  const nameError = properties.name?.errors[0] || undefined;
+  const emailError = properties.email?.errors[0] || undefined;
+  const phoneError = properties.phone?.errors[0] || undefined;
+  const bodyError = properties.body?.errors[0] || undefined;
+
   const nameInput = useFormInput({
-    initialValue: '',
-    validators: [validation.isRequired({ message: 'Let me know who to contact' })],
+    initialValue: name || '',
   });
 
   const emailInput = useFormInput({
-    initialValue: '',
-    validators: [validation.isEmail({ message: 'Please enter a valid email' })],
+    initialValue: email || '',
   });
 
   const phoneInput = useFormInput({
-    initialValue: '',
-    validators: [validation.isPhone({ message: 'Please enter a valid phone number' })],
+    initialValue: phone || '',
   });
 
   const bodyInput = useFormInput({
-    initialValue: '',
-    validators: [validation.isRequired({ message: 'Please enter a message' })],
+    initialValue: body || '',
   });
 
   return (
@@ -117,21 +165,23 @@ export default function Contact() {
           </p>
         </div>
 
-        {error ? (
-          <div className='text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-125 mx-auto p-6'>
+        {error && (error.type === 'form' || error.type === 'send') ? (
+          <div className='text-red-700 bg-red-100 border border-red-300 rounded-md w-full max-w-135 mx-auto p-6'>
             {error.message}
           </div>
-        ) : formData ? (
-          <div className='text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-125 mx-auto p-6'>
+        ) : success ? (
+          <div className='text-green-700 bg-green-100 border border-green-300 rounded-md w-full max-w-135 mx-auto p-6'>
             Message sent successfully!
           </div>
         ) : (
           <div className='flex items-center justify-center mb-8'>
-            <div className='py-4 px-2 bg-gray-200 rounded-md border border-gray-300 shadow-md'>
-              <form method='POST' className='space-y-6 px-2 max-w-125 w-full'>
+            <div className='py-4 px-2 bg-gray-200 rounded-md border border-gray-300 shadow-md w-full max-w-135'>
+              <form method='POST' className='space-y-6 px-2 w-full'>
                 <FormInput
+                  key={name}
                   inputProps={{
                     ...nameInput,
+                    errorMessage: nameError,
                     bind: {
                       ...nameInput.bind,
                       name: 'name',
@@ -142,10 +192,12 @@ export default function Contact() {
                   }}
                 />
 
-                <div className='flex items-center justify-center'>
+                <div className='flex flex-col lg:flex-row space-y-2 lg:space-y-0 items-center justify-center'>
                   <FormInput
+                    key={email}
                     inputProps={{
                       ...emailInput,
+                      errorMessage: emailError,
                       bind: {
                         ...emailInput.bind,
                         name: 'email',
@@ -159,8 +211,10 @@ export default function Contact() {
                   <div className='px-2'>or</div>
 
                   <FormInput
+                    key={phone}
                     inputProps={{
                       ...phoneInput,
+                      errorMessage: phoneError,
                       bind: {
                         ...phoneInput.bind,
                         name: 'phone',
@@ -173,8 +227,10 @@ export default function Contact() {
                 </div>
 
                 <FormInput
+                  key={body}
                   inputProps={{
                     ...bodyInput,
+                    errorMessage: bodyError,
                     bind: {
                       ...bodyInput.bind,
                       name: 'body',

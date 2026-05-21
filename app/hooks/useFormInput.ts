@@ -1,35 +1,29 @@
-import type { ChangeEvent } from 'react';
-import { useState } from 'react';
-import validation from '../utils/validation';
+import { useEffect, useState } from 'react';
 
-type Validator = (value: string) => string | null;
+import type { ChangeEvent } from 'react';
+import validation from '../utils/validation';
 
 interface UseFormInputProps {
   initialValue?: string;
-  validators?: Validator[];
 }
 
-export default function useFormInput({ initialValue = '', validators = [] }: UseFormInputProps) {
-  const [value, setValue] = useState(initialValue || '');
+export default function useFormInput({ initialValue = '' }: UseFormInputProps) {
+  const [value, setValue] = useState(initialValue);
   const [touched, setTouched] = useState(false);
   const [isValid, setIsValid] = useState<boolean | null>(
-    initialValue !== '' && initialValue !== null && !touched ? true : null
+    initialValue !== '' && initialValue !== null ? true : null
   );
   const [errorMessage, setErrorMessage] = useState('');
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(!initialValue);
 
-  const validateField = (value: string) => {
-    setIsEmpty(validation.isEmpty(value));
-    if (validators.length) {
-      validators.some((validator) => {
-        const result = validator(value);
-        const valid = result === null;
-        setIsValid(valid);
-        setErrorMessage(result ?? '');
-        return !valid;
-      });
+  // ✅ Sync state when initialValue changes (e.g. after form submission)
+  useEffect(() => {
+    if (initialValue) {
+      setValue(initialValue);
+      setIsEmpty(false);
+      setIsValid(true);
     }
-  };
+  }, [initialValue]);
 
   return {
     value,
@@ -41,7 +35,7 @@ export default function useFormInput({ initialValue = '', validators = [] }: Use
       value,
       onFocus: () => setTouched(true),
       onChange: (event: ChangeEvent<HTMLInputElement>): void => setValue(event.target.value),
-      onBlur: (event: ChangeEvent<HTMLInputElement>): void => validateField(event.target.value),
+      onBlur: (): void => setIsEmpty(validation.isEmpty(value)),
     },
     reset: () => {
       setValue(initialValue);
@@ -53,5 +47,6 @@ export default function useFormInput({ initialValue = '', validators = [] }: Use
       setIsValid(true);
       setTouched(false);
     },
+    setErrorMessage: (message: string) => setErrorMessage(message),
   };
 }
