@@ -30,7 +30,7 @@ export async function action({ request }: ActionFunctionArgs) {
   // Error type 1: No form data
   if (!formData) {
     return {
-      formData: undefined,
+      formData: null,
       error: { type: 'form' as const, message: 'No form data' },
     };
   }
