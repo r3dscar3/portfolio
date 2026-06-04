@@ -33,12 +33,12 @@ export default function Home() {
           What sets me apart goes beyond the code. Over two decades, I've grown from graphic
           designer to staff engineer at organizations like{' '}
           <span className='font-semibold'>Walmart Global Tech</span> & the{' '}
-          <span className='font-semibold'>NHL</span> - a path that's given me a rare instinct for
-          the intersection of design and engineering. I specialize in building the systems behind
-          great products: robust CI/CD pipelines, maintainable JavaScript architectures, and the
-          kind of deployment infrastructure teams can actually rely on. Just as important, I invest
-          deeply in the people around me - mentoring junior and mid-level engineers, leading code
-          reviews, and fostering the technical culture where great work consistently happens.
+          <span className='font-semibold'>NHL</span>, a path that's given me a rare instinct for the
+          intersection of design and engineering. I specialize in building the systems behind great
+          products: robust CI/CD pipelines, maintainable JavaScript architectures, and the kind of
+          deployment infrastructure teams can actually rely on. Just as important, I invest deeply
+          in the people around me, mentoring junior and mid-level engineers, leading code reviews,
+          and fostering the technical culture where great work consistently happens.
         </p>
       </div>
 
